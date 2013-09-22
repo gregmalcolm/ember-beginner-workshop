@@ -45,30 +45,30 @@ App.Chapter.FIXTURES = [
   {
     id: 2000,
     synopsis: "Intro",
-    text: "It is a lovely summers day. While lying on your back watching clouds" +
-          " you notice a small dark dot in the sky above you.",
+    text: "It is a lovely summers day. While lying on your back watching " +
+          "clouds you notice a small dark dot in the sky above you.",
     story: 100,
     choices: [3000, 3001, 3002]
   },
   {
     id: 2010,
     synopsis: "Die straight away",
-    text: "You slip back into delightful dream about bacon xylophones. And know " +
-          "no more. You are dead.",
+    text: "You slip back into delightful dream about bacon xylophones. And " +
+          "know no more. You are dead.",
     story: 100
   },
   {
     id: 2011,
     synopsis: "It's getting bigger",
-    text: "You frown at the sky for a few moments trying to work out what it is." +
-          "\nNo idea, but seems to be getting bigger",
+    text: "You frown at the sky for a few moments trying to work out what it " +
+          "is.\nNo idea, but seems to be getting bigger",
     story: 100
   },
   {
     id: 2011,
     synopsis: "It's still there",
-    text: "You get up and start heading back to your car. As you putting the keys" +
-          "in the lock you can't help noticing that it's getting bigger",
+    text: "You get up and start heading back to your car. As you putting the " +
+          "keys in the lock you can't help noticing that it's getting bigger",
     story: 100
   },
   {
@@ -89,8 +89,8 @@ App.Chapter.FIXTURES = [
     id: 2200,
     synopsis: 'Intro',
     title: 'Zombies!',
-    text: "Daniella hit the bell one more time. She was just about turn and leave" +
-          "when she heard a growling from behind the counter.",
+    text: "Daniella hit the bell one more time. She was just about turn and " +
+          "leave when she heard a growling from behind the counter.",
     story: 102
   },
   {
