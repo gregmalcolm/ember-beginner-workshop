@@ -18,9 +18,18 @@ App.StoriesRoute = Ember.Route.extend({
   }
 });
 
+App.StoriesIndexRoute = App.StoriesRoute.extend({
+});
+
 App.StoryRoute = Ember.Route.extend({
   model: function(params) {
     return this.get("store").find("story", params.story_id);
   }
+});
+
+App.StoriesShowRoute = App.StoryRoute.extend({
+});
+
+App.StoriesEditRoute = App.StoryRoute.extend({
 });
 

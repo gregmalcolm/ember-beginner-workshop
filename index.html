@@ -5,26 +5,10 @@
 <title>Choose your own Adventure</title>
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/bootstrap-theme.css">
 </head>
 <body>
-
-  <script type="text/x-handlebars">
-    <h2>Choose Your Own Adventure</h2>
-
-    {{outlet}}
-  </script>
-
-  <script type="text/x-handlebars" data-template-name="stories">
-    <h3>Stories:<h3>
-    <ul>
-      {{#each story in controller}}
-        <li>
-        {{#link-to 'stories.show' story}}{{story.title}}{{/link-to}}
-        </li>
-      {{/each}}
-    </ul>
-  </script>
-
   <script src="js/libs/jquery-1.9.1.js"></script>
   <script src="js/libs/handlebars-1.0.0.js"></script>
   <script src="js/libs/ember-1.0.0.js"></script>
@@ -33,5 +17,43 @@
   <script src="js/routes.js"></script>
   <script src="js/controllers.js"></script>
   <script src="js/models.js"></script>
+  <script src="js/bootstrap.js"></script>
+
+  <script type="text/x-handlebars">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Choose your own Adventure</a>
+      </div>
+    </nav>
+    {{outlet}}
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="stories/index">
+    <h3>Stories:</h3>
+    <ul>
+      {{#each story in content}}
+        <li>
+        {{#link-to 'stories.edit' story}}
+          <button class="btn btn-primary btn-xs">Edit</button>
+        {{/link-to}}
+        {{#link-to 'stories.show' story}}{{story.title}}{{/link-to}}
+        </li>
+      {{/each}}
+    </ul>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="stories/show">
+    {{#link-to 'stories.edit' content}}
+      <button class="btn btn-primary">Edit</button>
+    {{/link-to}}
+    <h3>{{title}}</h3>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="stories/edit">
+    <button {{action save}} class="btn btn-success">Save</button>
+    <button {{action cancel}} class="btn btn-danger">Cancel</button>
+    <h3>Edit {{title}}</h3>
+    Title {{input value=title}}
+  </script>
 </body>
 </html>
