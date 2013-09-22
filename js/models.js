@@ -65,7 +65,7 @@ App.Section.FIXTURES = [
     story: 100
   },
   {
-    id: 2011,
+    id: 2012,
     synopsis: "It's still there",
     text: "You get up and start heading back to your car. As you putting the " +
           "keys in the lock you can't help noticing that it's getting bigger",
@@ -107,16 +107,16 @@ App.Choice.FIXTURES = [
   {
       id: 3000,
       wording: "Go back to sleep",
-      section_link: 2010
+      section: 2010
   },
   {
       id: 3001,
       wording: "Keep staring at it",
-      section_link: 2011
+      section: 2011
   },
   {
       id: 3002,
       wording: "Head home",
-      section_link: 2012
+      section: 2012
   }
 ];

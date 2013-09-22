@@ -1,7 +1,8 @@
-App.StoryController = Ember.ObjectController.extend({
+App.SectionShowController = Ember.ObjectController.extend({
 });
 
-App.StoryEditController = App.StoryController.extend({
+
+App.EditstoryController = Ember.ObjectController.extend({
   actions: {
     save: function() {
       this.get("content").save().then(

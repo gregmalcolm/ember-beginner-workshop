@@ -33,7 +33,7 @@
     <ul>
       {{#each story in content}}
         <li>
-        {{#link-to 'story.edit' story}}
+        {{#link-to 'editstory' story}}
           <button class="btn btn-primary btn-xs">Edit</button>
         {{/link-to}}
         {{#link-to 'story' story}}{{story.title}}{{/link-to}}
@@ -42,27 +42,19 @@
     </ul>
   </script>
 
-  <script type="text/x-handlebars" data-template-name="story/index">
-    {{#link-to 'story.edit' content}}
+  <script type="text/x-handlebars" data-template-name="story">
+    {{#link-to 'editstory' content}}
       <button class="btn btn-primary">Edit</button>
     {{/link-to}}
     <h3>{{title}}</h3>
-    {{first_section.text}}
-    <br>
-    <br>
-    {{#if first_section.choices}}
-      <p>What do you want to do?<p>
-      <ul>
-        {{#each first_section.choices}}
-          <li>{{#link-to}}{{wording}}{{/link-to}}</li>
-        {{/each}}
-      </ul>
-    {{else}}
-      <p><strong>The End</strong></p>
-    {{/if}}
+    {{outlet}}
   </script>
 
-  <script type="text/x-handlebars" data-template-name="story/edit">
+  <script type="text/x-handlebars" data-template-name="story/index">
+    {{render section-show first_section}}
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="editstory">
     <button {{action save}} class="btn btn-success">Save</button>
     <button {{action cancel}} class="btn btn-danger">Cancel</button>
     <h3>Edit {{title}}</h3>
@@ -82,6 +74,26 @@
         {{textarea value=first_section.text cols=100 rows=10}}
       </fieldset>
     </div>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="story/section">
+    {{render section-show content}}
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="section-show">
+    {{content.text}}
+    <br>
+    <br>
+    {{#if content.choices}}
+      <p>What do you want to do?<p>
+      <ul>
+        {{#each content.choices}}
+          <li>{{#link-to 'story.section' section}}{{wording}}{{/link-to}}</li>
+        {{/each}}
+      </ul>
+    {{else}}
+      <p><strong>The End</strong></p>
+    {{/if}}
   </script>
 </body>
 </html>
