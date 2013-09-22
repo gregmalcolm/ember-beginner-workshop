@@ -64,17 +64,7 @@
       <label>Title</label>
       {{input value=title}}
     </fieldset>
-    <h4>Section: {{first_section.synopsis}}</h4>
-    <div>
-      <fieldset>
-        <label>Short synopsis:</label>
-        {{input value=first_section.synopsis}}
-      </fieldset>
-      <fieldset>
-        <label>Content:</label><br>
-        {{textarea value=first_section.text cols=100 rows=10}}
-      </fieldset>
-    </div>
+    {{ render section-edit first_section }}
   </script>
 
   <script type="text/x-handlebars" data-template-name="story/section">
@@ -95,6 +85,33 @@
     {{else}}
       <p><strong>The End</strong></p>
     {{/if}}
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="section-edit">
+    <h4>Section: {{content.synopsis}}</h4>
+    <div>
+      <fieldset>
+        <label>Short synopsis:</label>
+        {{input value=content.synopsis}}
+      </fieldset>
+      <fieldset>
+        <label>Content:</label><br>
+        {{textarea value=content.text cols=100 rows=6}}
+      </fieldset>
+      {{render choices-edit content.choices}}
+    </div>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="choices-edit">
+    <h4>Choices:</h4>
+    <ul>
+    {{#each choice in content}}
+    <li>
+      <button {{action "remove" choice}} class="btn btn-danger btn-xs">Remove</button>
+      {{choice.wording}}
+    </li>
+    {{/each}}
+    </ul>
   </script>
 </body>
 </html>
