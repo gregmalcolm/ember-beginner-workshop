@@ -100,7 +100,7 @@ App.Section.FIXTURES = [
     story: 100
   },
   {
-    id: 2102,
+    id: 2100,
     synopsis: "Tavern - Intro",
     text: "Froggit sat dejectedly looking into his tankard. A small skirmish " +
           "broke out at the end of the tavern, but his heart just wasn't in it",
