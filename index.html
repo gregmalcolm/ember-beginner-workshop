@@ -47,13 +47,13 @@
       <button class="btn btn-primary">Edit</button>
     {{/link-to}}
     <h3>{{title}}</h3>
-    {{first_chapter.text}}
+    {{first_section.text}}
     <br>
     <br>
-    {{#if first_chapter.choices}}
+    {{#if first_section.choices}}
       <p>What do you want to do?<p>
       <ul>
-        {{#each first_chapter.choices}}
+        {{#each first_section.choices}}
           <li>{{#link-to}}{{wording}}{{/link-to}}</li>
         {{/each}}
       </ul>
@@ -71,15 +71,15 @@
       <label>Title</label>
       {{input value=title}}
     </fieldset>
-    <h4>Chapter: {{first_chapter.synopsis}}</h4>
+    <h4>Section: {{first_section.synopsis}}</h4>
     <div>
       <fieldset>
         <label>Short synopsis:</label>
-        {{input value=first_chapter.synopsis}}
+        {{input value=first_section.synopsis}}
       </fieldset>
       <fieldset>
         <label>Content:</label><br>
-        {{textarea value=first_chapter.text cols=100 rows=10}}
+        {{textarea value=first_section.text cols=100 rows=10}}
       </fieldset>
     </div>
   </script>

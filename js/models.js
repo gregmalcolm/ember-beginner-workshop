@@ -2,10 +2,10 @@ App.ApplicationAdapter = DS.FixtureAdapter.extend();
 
 App.Story = DS.Model.extend({
   title: DS.attr('string'),
-  first_chapter: DS.belongsTo('chapter')
+  first_section: DS.belongsTo('section')
 });
 
-App.Chapter = DS.Model.extend({
+App.Section = DS.Model.extend({
   seq: DS.attr('number'),
   synopsis: DS.attr('string'),
   text: DS.attr('string'),
@@ -15,33 +15,33 @@ App.Chapter = DS.Model.extend({
 
 App.Choice = DS.Model.extend({
   wording: DS.attr('string'),
-  chapter: DS.belongsTo('chapter')
+  section: DS.belongsTo('section')
 });
 
 App.Story.FIXTURES = [
   {
     id: 100,
     title: 'Temple Quest',
-    first_chapter: 2000
+    first_section: 2000
   },
   {
     id: 101,
     title: 'Adventure!',
-    first_chapter: 2100
+    first_section: 2100
   },
   {
     id: 102,
     title: 'Zombies!',
-    first_chapter: 2200
+    first_section: 2200
   },
   {
     id: 103,
     title: 'Deathrace!',
-    first_chapter: 2300
+    first_section: 2300
   }
 ];
 
-App.Chapter.FIXTURES = [
+App.Section.FIXTURES = [
   {
     id: 2000,
     synopsis: "Intro",
@@ -107,16 +107,16 @@ App.Choice.FIXTURES = [
   {
       id: 3000,
       wording: "Go back to sleep",
-      chapter_link: 2010
+      section_link: 2010
   },
   {
       id: 3001,
       wording: "Keep staring at it",
-      chapter_link: 2011
+      section_link: 2011
   },
   {
       id: 3002,
       wording: "Head home",
-      chapter_link: 2012
+      section_link: 2012
   }
 ];
