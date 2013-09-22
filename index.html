@@ -33,17 +33,17 @@
     <ul>
       {{#each story in content}}
         <li>
-        {{#link-to 'stories.edit' story}}
+        {{#link-to 'story.edit' story}}
           <button class="btn btn-primary btn-xs">Edit</button>
         {{/link-to}}
-        {{#link-to 'stories.show' story}}{{story.title}}{{/link-to}}
+        {{#link-to 'story' story}}{{story.title}}{{/link-to}}
         </li>
       {{/each}}
     </ul>
   </script>
 
-  <script type="text/x-handlebars" data-template-name="stories/show">
-    {{#link-to 'stories.edit' content}}
+  <script type="text/x-handlebars" data-template-name="story/index">
+    {{#link-to 'story.edit' content}}
       <button class="btn btn-primary">Edit</button>
     {{/link-to}}
     <h3>{{title}}</h3>
@@ -62,7 +62,7 @@
     {{/if}}
   </script>
 
-  <script type="text/x-handlebars" data-template-name="stories/edit">
+  <script type="text/x-handlebars" data-template-name="story/edit">
     <button {{action save}} class="btn btn-success">Save</button>
     <button {{action cancel}} class="btn btn-danger">Cancel</button>
     <h3>Edit {{title}}</h3>

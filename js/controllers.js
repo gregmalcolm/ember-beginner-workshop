@@ -1,7 +1,7 @@
 App.StoryController = Ember.ObjectController.extend({
 });
 
-App.StoriesEditController = App.StoryController.extend({
+App.StoryEditController = App.StoryController.extend({
   actions: {
     save: function() {
       this.get("content").save().then(
@@ -11,12 +11,12 @@ App.StoriesEditController = App.StoryController.extend({
 
     cancel: function() {
       this.get("content").rollback();
-      this.transitionToRoute("stories.show");
+      this.transitionToRoute("story.index");
     }
   },
 
   didSave: function(story) {
     console.log("Story saved");
-    this.transitionToRoute("stories.show");
+    this.transitionToRoute("story.index");
   }
 });

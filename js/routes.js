@@ -1,19 +1,21 @@
 App.Router.map(function() {
   this.resource('stories', function() {
     this.route('new');
-    this.route('edit', { path: ':story_id/edit' });
-    this.route('show', { path: ':story_id' });
+  });
+
+  this.resource('story', { path: '/stories/:story_id'}, function() {
+    this.route('edit', { path: 'edit' });
   });
 });
 
 App.IndexRoute = Ember.Route.extend({
-  redirect: function() {
+  redirect: function(params) {
     this.transitionTo("stories");
   }
 });
 
 App.StoriesRoute = Ember.Route.extend({
-  model: function() {
+  model: function(params) {
     return this.get("store").findAll("story");
   }
 });
@@ -23,13 +25,23 @@ App.StoriesIndexRoute = App.StoriesRoute.extend({
 
 App.StoryRoute = Ember.Route.extend({
   model: function(params) {
-    return this.get("store").find("story", params.story_id);
+    return this.get("store").find("story", "100");
   }
 });
 
-App.StoriesShowRoute = App.StoryRoute.extend({
+App.SingleStoryRoute = Ember.Route.extend({
+  model: function(params) {
+    return this.modelFor("story");
+  }
 });
 
-App.StoriesEditRoute = App.StoryRoute.extend({
+App.StoryIndexRoute = App.SingleStoryRoute.extend({
+  model: function(params) {
+    console.log("StoryIndexRoute");
+    return this._super(params);
+  }
+});
+
+App.StoryEditRoute = App.SingleStoryRoute.extend({
 });
 
