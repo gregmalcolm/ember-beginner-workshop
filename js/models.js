@@ -10,12 +10,13 @@ App.Section = DS.Model.extend({
   synopsis: DS.attr('string'),
   text: DS.attr('string'),
   story: DS.belongsTo('story'),
-  choices: DS.hasMany('choice')
+  choices: DS.hasMany('choice', {async: true, inverse: 'section'})
 });
 
 App.Choice = DS.Model.extend({
   wording: DS.attr('string'),
-  section: DS.belongsTo('section')
+  section: DS.belongsTo('section'),
+  goes_to: DS.belongsTo('section')
 });
 
 App.Story.FIXTURES = [
@@ -55,20 +56,68 @@ App.Section.FIXTURES = [
     synopsis: "Die straight away",
     text: "You slip back into delightful dream about bacon xylophones. And " +
           "know no more. You are dead.",
-    story: 100
+    story: 100,
   },
   {
     id: 2011,
     synopsis: "It's getting bigger",
     text: "You frown at the sky for a few moments trying to work out what it " +
-          "is.\nNo idea, but seems to be getting bigger",
-    story: 100
+          "is?\nAbsolutely no idea, but seems to be getting bigger",
+    story: 100,
+    choices: [3000, 3003, 3002]
   },
   {
     id: 2012,
-    synopsis: "It's still there",
-    text: "You get up and start heading back to your car. As you putting the " +
-          "keys in the lock you can't help noticing that it's getting bigger",
+    synopsis: "It's rectangular",
+    text: "You frown up at the sky some more. You can now see that it looks vaguely rectangular",
+    story: 100,
+    choices: [3000, 3004, 3002]
+  },
+  {
+    id: 2013,
+    synopsis: "It's getting even bigger",
+    text: "Yep, the shape in the sky is definietly getting bigger",
+    story: 100,
+    choices: [3000, 3005, 3002]
+  },
+  {
+    id: 2014,
+    synopsis: "It's blotting out the light",
+    text: "This thing is starting to cast a shadow.",
+    story: 100,
+    choices: [3000, 3006, 3002]
+  },
+  {
+    id: 2015,
+    synopsis: "It looks like some kind of stone structure",
+    text: "It looks like it's made of stone",
+    story: 100,
+    choices: [3000, 3007, 3002]
+  },
+  {
+    id: 2016,
+    synopsis: "It's getting pretty dark",
+    text: "It looks like some kind of falling building. You should probably get out of the way",
+    story: 100,
+    choices: [3000, 3008, 3002]
+  },
+  {
+    id: 2017,
+    synopsis: "It's getting really dark",
+    text: "It's getting really dark now. You really should run!",
+    story: 100,
+    choices: [3000, 3009, 3002]
+  },
+  {
+    id: 2018,
+    synopsis: "I should have moved",
+    text: "You have been squashed by a falling temple. Nice try bozo!",
+    story: 100,
+  },
+  {
+    id: 2020,
+    synopsis: "Heading out to the car",
+    text: "Eh, I haven't written this one yet. So you trip over your own shoelace and die.",
     story: 100
   },
   {
@@ -107,16 +156,50 @@ App.Choice.FIXTURES = [
   {
       id: 3000,
       wording: "Go back to sleep",
-      section: 2010
+      goes_to: 2010
   },
   {
       id: 3001,
       wording: "Keep staring at it",
-      section: 2011
+      goes_to: 2011
+  },
+  {
+      id: 3003,
+      wording: "Stare at it some more",
+      goes_to: 2012
+  },
+  {
+      id: 3004,
+      wording: "Keep staring at it",
+      goes_to: 2013
+  },
+  {
+      id: 3005,
+      wording: "Stare at it some more",
+      goes_to: 2014
+  },
+  {
+      id: 3006,
+      wording: "Keep staring at it",
+      goes_to: 2015
+  },
+  {
+      id: 3007,
+      wording: "Stare at it some more",
+      goes_to: 2016
+  },
+  {
+      id: 3008,
+      wording: "Keep staring at it",
+      goes_to: 2017
+  },
+  {
+      id: 3009,
+      wording: "Stare at it some more",
+      goes_to: 2018
   },
   {
       id: 3002,
       wording: "Head home",
-      section: 2012
-  }
-];
+      goes_to: 2020
+  }];
