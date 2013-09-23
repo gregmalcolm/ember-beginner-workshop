@@ -5,9 +5,10 @@ App.Router.map(function() {
 
   this.resource('story', { path: '/stories/:story_id' }, function() {
     this.route('section', { path: '/sections/:section_id' });
+    this.route('edit');
   });
 
-  this.resource('editstory', { path: '/stories/:story_id/edit' });
+  //this.resource('editstory', { path: '/stories/:story_id/edit' });
 });
 
 App.IndexRoute = Ember.Route.extend({

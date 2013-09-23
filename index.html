@@ -34,7 +34,7 @@
     <ul>
       {{#each story in content}}
         <li>
-        {{#link-to 'editstory' story}}
+        {{#link-to 'story.edit' story}}
           <button class="btn btn-primary btn-xs">Edit</button>
         {{/link-to}}
         {{#link-to 'story' story}}{{story.title}}{{/link-to}}
@@ -44,7 +44,7 @@
   </script>
 
   <script type="text/x-handlebars" data-template-name="story">
-    {{#link-to 'editstory' content}}
+    {{#link-to 'story.edit' content}}
       <button class="btn btn-primary">Edit</button>
     {{/link-to}}
     <h3>{{title}}</h3>
@@ -55,7 +55,7 @@
     {{render section-show first_section}}
   </script>
 
-  <script type="text/x-handlebars" data-template-name="editstory">
+  <script type="text/x-handlebars" data-template-name="story/edit">
     <button {{action save}} class="btn btn-success">Save</button>
     <button {{action cancel}} class="btn btn-danger">Cancel</button>
     <h3>Edit {{title}}</h3>
