@@ -106,12 +106,27 @@
     <h4>Choices:</h4>
     <ul>
     {{#each choice in content}}
-    <li>
-      <button {{action "remove" choice}} class="btn btn-danger btn-xs">Remove</button>
-      {{choice.wording}}
-    </li>
+      <li>
+        <button {{action "remove" choice}} class="btn btn-danger btn-xs">Remove</button>
+        {{choice.wording}}
+      </li>
     {{/each}}
     </ul>
+    {{render "choice-add"}}
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="choice-add">
+    <label>New choice</label><br>
+
+    {{input value=wording placeholder="Add an extra choice here" size="60"}}
+    Links to:
+    {{view Ember.Select
+        contentBinding="storySections"
+        optionValuePath="content"
+        optionLabelPath="content.synopsis"
+        valueBinding="goes_to"
+    }}
+    <button {{action "add"}} class="btn btn-success btn-xs">Add</button>
   </script>
 </body>
 </html>
