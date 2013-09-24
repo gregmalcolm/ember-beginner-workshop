@@ -55,6 +55,10 @@
     {{render section-show first_section}}
   </script>
 
+  <script type="text/x-handlebars" data-template-name="story/edit/index">
+    {{ render section-edit first_section }}
+  </script>
+
   <script type="text/x-handlebars" data-template-name="story/edit">
     <button {{action save}} class="btn btn-success">Save</button>
     <button {{action cancel}} class="btn btn-danger">Cancel</button>
@@ -64,11 +68,15 @@
       <label>Title</label>
       {{input value=title}}
     </fieldset>
-    {{ render section-edit first_section }}
+    {{ outlet }}
   </script>
 
   <script type="text/x-handlebars" data-template-name="story/section">
     {{render section-show content}}
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="story/edit/section">
+    {{render section-edit content}}
   </script>
 
   <script type="text/x-handlebars" data-template-name="section-show">
@@ -108,7 +116,7 @@
     {{#each choice in content}}
       <li>
         <button {{action "remove" choice}} class="btn btn-danger btn-xs">Remove</button>
-        {{choice.wording}}
+        {{#link-to 'story.edit.section' choice.goes_to}}{{choice.wording}}{{/link-to}}
       </li>
     {{/each}}
     </ul>

@@ -1,4 +1,4 @@
-App.EditstoryController = Ember.ObjectController.extend({
+App.StoryEditController = Ember.ObjectController.extend({
   actions: {
     save: function() {
       this.get("content").save().then(
@@ -29,7 +29,7 @@ App.ChoicesEditController = Ember.ArrayController.extend({
 
 
 App.ChoiceAddController = Ember.ObjectController.extend({
-  needs: ["editstory", "section-edit"],
+  needs: ["story-edit", "section-edit"],
 
   content: function() {
     return this.createChoiceObject();
@@ -48,7 +48,7 @@ App.ChoiceAddController = Ember.ObjectController.extend({
     console.log("storySections");
     //TODO: Filter properly when we move over to RESTAdapter
     return this.get("store").find("section");
-  }.property("controllers.editstory.id"),
+  }.property("controllers.story-edit.id"),
 
   createChoiceObject: function() {
     return this.get("store").createRecord('choice');

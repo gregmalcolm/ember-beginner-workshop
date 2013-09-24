@@ -5,10 +5,10 @@ App.Router.map(function() {
 
   this.resource('story', { path: '/stories/:story_id' }, function() {
     this.route('section', { path: '/sections/:section_id' });
-    this.route('edit');
+    this.resource('story.edit', { path: 'edit'}, function() {
+      this.route('section', { path: '/sections/:section_id' });
+    });
   });
-
-  //this.resource('editstory', { path: '/stories/:story_id/edit' });
 });
 
 App.IndexRoute = Ember.Route.extend({
@@ -17,34 +17,37 @@ App.IndexRoute = Ember.Route.extend({
   }
 });
 
-App.StoriesRoute = Ember.Route.extend({
+App.StoriesIndexRoute = Ember.Route.extend({
   model: function(params) {
     return this.get("store").findAll("story");
   }
 });
 
-App.StoriesIndexRoute = App.StoriesRoute.extend({
-});
-
 App.StoryRoute = Ember.Route.extend({
   model: function(params) {
-    return this.get("store").find("story", "100");
+    model = this.get("store").find("story", params.story_id);
+    console.log("Story Model=" + model);
+    return model;
   }
 });
 
-App.SingleStoryRoute = Ember.Route.extend({
+App.StoryIndexRoute = Ember.Route.extend({
   model: function(params) {
     return this.modelFor("story");
   }
 });
 
-App.StoryIndexRoute = App.SingleStoryRoute.extend({
+App.StoryEditRoute = App.StoryRoute.extend({
   model: function(params) {
-    console.log("StoryIndexRoute");
-    return this._super(params);
+    return this.modelFor("story");
   }
 });
 
-App.StoryEditRoute = App.SingleStoryRoute.extend({
+
+App.StoryEditIndexRoute = App.StoryIndexRoute.extend({
+  model: function(params) {
+    model = this.modelFor("story");
+    return model;
+  }
 });
 
