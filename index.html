@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Ember Starter Kit</title>
+<title>Choose Your Own Adventure</title>
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="css/bootstrap-theme.css">
@@ -20,18 +20,29 @@
   <script src="js/models.js"></script>
   <script src="js/fixtures.js"></script>
 
-  <script type="text/x-handlebars">
-    <h2>Welcome to Ember.js</h2>
+  <!--== Templates ==-->
 
+  <script type="text/x-handlebars">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Choose your own Adventure</a>
+      </div>
+    </nav>
     {{outlet}}
   </script>
 
-  <script type="text/x-handlebars" data-template-name="index">
+  <!--== Templates with routes ==-->
+  <!-- / -->
+  <script type="text/x-handlebars"
+          data-template-name="index">
+
+    <h3>Stories:</h3>
     <ul>
-    {{#each item in model}}
-      <li>{{item}}</li>
-    {{/each}}
+      {{#each title in content}}
+        <li>{{title}}</li>
+      {{/each}}
     </ul>
   </script>
+
 </body>
 </html>
