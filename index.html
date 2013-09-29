@@ -38,8 +38,8 @@
 
     <h3>Stories:</h3>
     <ul>
-      {{#each}}
-        <li>{{title}}</li>
+      {{#each story in content}}
+        <li>{{#link-to 'stories.view' story}}{{story.title}}{{/link-to}}</li>
       {{/each}}
     </ul>
   </script>
