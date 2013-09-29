@@ -49,5 +49,18 @@
           data-template-name="stories/view">
     <h3>{{title}}</h3>
   </script>
+
+  <!-- /stories/:story_id/edit -->
+  <script type="text/x-handlebars"
+          data-template-name="stories/edit">
+    <button class="btn btn-success">Save</button>
+    <button class="btn btn-danger">Cancel</button>
+    <h3>Edit {{title}}</h3>
+
+    <fieldset>
+      <label>Title</label>
+      {{input value=title size="80"}}
+    </fieldset>
+  </script>
 </body>
 </html>
