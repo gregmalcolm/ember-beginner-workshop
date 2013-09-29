@@ -29,35 +29,13 @@
     {{outlet}}
   </script>
 
+  <!-- Templates with routes -->
+
   <script type="text/x-handlebars" data-template-name="story/index">
     <h3>Stories:</h3>
     {{#link-to 'story.new'}}<button class = "btn btn-success">New Story</button>{{/link-to}}
     <br>
-    <table>
-      {{#each story in content}}
-        <tr>
-          <td>
-            {{#link-to 'story.view' story}}{{story.title}}{{/link-to}}
-          </td>
-          <td>
-            {{#link-to 'story.edit' story}}
-              <button class="btn btn-primary btn-xs">Edit</button>
-            {{/link-to}}
-          </td>
-          <td>
-            <button {{action "destroy" story}} class="btn btn-danger btn-xs">Delete</button>
-          </td>
-        </tr>
-      {{/each}}
-    </table>
-  </script>
-
-  <script type="text/x-handlebars" data-template-name="story/view/index">
-    {{render section-show first_section}}
-  </script>
-
-  <script type="text/x-handlebars" data-template-name="story/edit/index">
-    {{render section-edit first_section}}
+    {{partial "story/storiesTable"}}
   </script>
 
   <script type="text/x-handlebars" data-template-name="story/view">
@@ -66,6 +44,14 @@
     {{/link-to}}
     <h3>{{title}}</h3>
     {{outlet}}
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="story/view/index">
+    {{render section-show first_section}}
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="story/view/section">
+    {{render section-show content}}
   </script>
 
   <script type="text/x-handlebars" data-template-name="story/edit">
@@ -80,6 +66,14 @@
     {{ outlet }}
   </script>
 
+  <script type="text/x-handlebars" data-template-name="story/edit/index">
+    {{render section-edit first_section}}
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="story/edit/section">
+    {{render section-edit content}}
+  </script>
+
   <script type="text/x-handlebars" data-template-name="story/new">
     <h3>New Story</h3>
     <fieldset>
@@ -91,13 +85,8 @@
     <button {{action cancel}} class="btn btn-danger">Cancel</button>
   </script>
 
-  <script type="text/x-handlebars" data-template-name="story/view/section">
-    {{render section-show content}}
-  </script>
 
-  <script type="text/x-handlebars" data-template-name="story/edit/section">
-    {{render section-edit content}}
-  </script>
+  <!-- Templates with controllers only -->
 
   <script type="text/x-handlebars" data-template-name="section-show">
     {{content.text}}
@@ -155,6 +144,28 @@
         valueBinding="goes_to"
     }}
     <button {{action "add"}} class="btn btn-success btn-xs">Add</button>
+  </script>
+
+  <!-- Templates partials -->
+
+  <script type="text/x-handlebars" data-template-name="story/_storiesTable">
+    <table>
+      {{#each story in content}}
+        <tr>
+          <td>
+            {{#link-to 'story.view' story}}{{story.title}}{{/link-to}}
+          </td>
+          <td>
+            {{#link-to 'story.edit' story}}
+              <button class="btn btn-primary btn-xs">Edit</button>
+            {{/link-to}}
+          </td>
+          <td>
+            <button {{action "destroy" story}} class="btn btn-danger btn-xs">Delete</button>
+          </td>
+        </tr>
+      {{/each}}
+    </table>
   </script>
 </body>
 </html>
