@@ -1,4 +1,7 @@
-/* Put your CSS here */
-html, body {
-    margin: 20px;
+body {
+  margin: 60px 20px;
+}
+
+button {
+  margin: 2px;
 }
