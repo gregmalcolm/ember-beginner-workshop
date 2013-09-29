@@ -1,3 +1,12 @@
+App.StoryIndexController = Ember.ArrayController.extend({
+  actions: {
+    destroy: function(story) {
+      story.deleteRecord();
+      story.save();
+    }
+  }
+});
+
 App.StoryModifyController = Ember.ObjectController.extend({
   actions: {
     cancel: function() {
@@ -44,9 +53,16 @@ App.ChoicesEditController = Ember.ArrayController.extend({
   actions: {
     remove: function(choice) {
       choice.deleteRecord();
-      choice.save();
+      choice.save().then(this.didRemove.bind(this), this.didRejectRemove.bind(this));
     }
   },
+  didRemove: function(choice) {
+    choices = this.get("content")
+    choices.removeObject(choice)
+  },
+  didRejectRemove: function(reason) {
+    console.error("Failed to remove item", reason);
+  }
 });
 
 

@@ -33,16 +33,23 @@
     <h3>Stories:</h3>
     {{#link-to 'story.new'}}<button class = "btn btn-success">New Story</button>{{/link-to}}
     <br>
-    <ul>
+    <table>
       {{#each story in content}}
-        <li>
-        {{#link-to 'story.edit' story}}
-          <button class="btn btn-primary btn-xs">Edit</button>
-        {{/link-to}}
-        {{#link-to 'story.view' story}}{{story.title}}{{/link-to}}
-        </li>
+        <tr>
+          <td>
+            {{#link-to 'story.view' story}}{{story.title}}{{/link-to}}
+          </td>
+          <td>
+            {{#link-to 'story.edit' story}}
+              <button class="btn btn-primary btn-xs">Edit</button>
+            {{/link-to}}
+          </td>
+          <td>
+            <button {{action "destroy" story}} class="btn btn-danger btn-xs">Delete</button>
+          </td>
+        </tr>
       {{/each}}
-    </ul>
+    </table>
   </script>
 
   <script type="text/x-handlebars" data-template-name="story/view/index">
