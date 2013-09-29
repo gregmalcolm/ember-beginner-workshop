@@ -1,4 +1,4 @@
-App.StoryIndexController = Ember.ArrayController.extend({
+App.StoriesIndexController = Ember.ArrayController.extend({
   actions: {
     destroy: function(story) {
       story.deleteRecord();
@@ -7,20 +7,20 @@ App.StoryIndexController = Ember.ArrayController.extend({
   }
 });
 
-App.StoryModifyController = Ember.ObjectController.extend({
+App.StoriesModifyController = Ember.ObjectController.extend({
   actions: {
     cancel: function() {
       this.get("content").rollback();
-      this.transitionToRoute("story.index");
+      this.transitionToRoute("stories.index");
     }
   },
 
   didSave: function(story) {
-    this.transitionToRoute("story.index");
+    this.transitionToRoute("stories.index");
   }
 });
 
-App.StoryEditController = App.StoryModifyController.extend({
+App.StoriesEditController = App.StoriesModifyController.extend({
   actions: {
     save: function() {
       this.get("content").save().then(
@@ -30,11 +30,11 @@ App.StoryEditController = App.StoryModifyController.extend({
   },
 
   didSave: function(story) {
-    this.transitionToRoute("story.index");
+    this.transitionToRoute("stories.index");
   }
 });
 
-App.StoryNewController = App.StoryModifyController.extend({
+App.StoriesNewController = App.StoriesModifyController.extend({
   actions: {
     create: function() {
       this.get("content").save().then(
@@ -44,7 +44,7 @@ App.StoryNewController = App.StoryModifyController.extend({
   },
 
   didCreate: function(story) {
-    this.transitionToRoute("story.edit", story);
+    this.transitionToRoute("stories.edit", story);
   }
 });
 
@@ -67,7 +67,7 @@ App.ChoicesEditController = Ember.ArrayController.extend({
 
 
 App.ChoiceAddController = Ember.ObjectController.extend({
-  needs: ["story-edit", "section-edit"],
+  needs: ["stories-edit", "section-edit"],
 
   content: function() {
     return this.createChoiceObject();
@@ -83,10 +83,9 @@ App.ChoiceAddController = Ember.ObjectController.extend({
   },
 
   storySections: function() {
-    console.log("storySections");
     //TODO: Filter properly when we move over to RESTAdapter
     return this.get("store").find("section");
-  }.property("controllers.story-edit.id"),
+  }.property("controllers.stories-edit.id"),
 
   createChoiceObject: function() {
     return this.get("store").createRecord('choice');

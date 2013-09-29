@@ -31,30 +31,35 @@
 
   <!-- Templates with routes -->
 
-  <script type="text/x-handlebars" data-template-name="story/index">
+  <script type="text/x-handlebars"
+          data-template-name="stories/index">
     <h3>Stories:</h3>
-    {{#link-to 'story.new'}}<button class = "btn btn-success">New Story</button>{{/link-to}}
+    {{#link-to 'stories.new'}}<button class = "btn btn-success">New Story</button>{{/link-to}}
     <br>
-    {{partial "story/storiesTable"}}
+    {{partial "stories/storiesTable"}}
   </script>
 
-  <script type="text/x-handlebars" data-template-name="story/view">
-    {{#link-to 'story.edit' content}}
+  <script type="text/x-handlebars"
+          data-template-name="stories/view">
+    {{#link-to 'stories.edit' content}}
       <button class="btn btn-primary">Edit</button>
     {{/link-to}}
     <h3>{{title}}</h3>
     {{outlet}}
   </script>
 
-  <script type="text/x-handlebars" data-template-name="story/view/index">
+  <script type="text/x-handlebars"
+          data-template-name="stories/view/index">
     {{render section-show first_section}}
   </script>
 
-  <script type="text/x-handlebars" data-template-name="story/view/section">
+  <script type="text/x-handlebars"
+          data-template-name="stories/view/section">
     {{render section-show content}}
   </script>
 
-  <script type="text/x-handlebars" data-template-name="story/edit">
+  <script type="text/x-handlebars"
+          data-template-name="stories/edit">
     <button {{action save}} class="btn btn-success">Save</button>
     <button {{action cancel}} class="btn btn-danger">Cancel</button>
     <h3>Edit {{title}}</h3>
@@ -66,15 +71,18 @@
     {{ outlet }}
   </script>
 
-  <script type="text/x-handlebars" data-template-name="story/edit/index">
+  <script type="text/x-handlebars"
+          data-template-name="stories/edit/index">
     {{render section-edit first_section}}
   </script>
 
-  <script type="text/x-handlebars" data-template-name="story/edit/section">
+  <script type="text/x-handlebars"
+          data-template-name="stories/edit/section">
     {{render section-edit content}}
   </script>
 
-  <script type="text/x-handlebars" data-template-name="story/new">
+  <script type="text/x-handlebars"
+          data-template-name="stories/new">
     <h3>New Story</h3>
     <fieldset>
       <label>Title</label>
@@ -88,7 +96,8 @@
 
   <!-- Templates with controllers only -->
 
-  <script type="text/x-handlebars" data-template-name="section-show">
+  <script type="text/x-handlebars"
+          data-template-name="section-show">
     {{content.text}}
     <br>
     <br>
@@ -96,7 +105,7 @@
       <p>What do you want to do?<p>
       <ul>
         {{#each content.choices}}
-          <li>{{#link-to 'story.view.section' goes_to}}{{wording}}{{/link-to}}</li>
+          <li>{{#link-to 'stories.view.section' goes_to}}{{wording}}{{/link-to}}</li>
         {{/each}}
       </ul>
     {{else}}
@@ -104,7 +113,8 @@
     {{/if}}
   </script>
 
-  <script type="text/x-handlebars" data-template-name="section-edit">
+  <script type="text/x-handlebars"
+          data-template-name="section-edit">
     <h4>Section: {{content.synopsis}}</h4>
     <div>
       <fieldset>
@@ -119,20 +129,22 @@
     </div>
   </script>
 
-  <script type="text/x-handlebars" data-template-name="choices-edit">
+  <script type="text/x-handlebars"
+          data-template-name="choices-edit">
     <h4>Choices:</h4>
     <ul>
     {{#each choice in content}}
       <li>
         <button {{action "remove" choice}} class="btn btn-danger btn-xs">Remove</button>
-        {{#link-to 'story.edit.section' choice.goes_to}}{{choice.wording}}{{/link-to}}
+        {{#link-to 'stories.edit.section' choice.goes_to}}{{choice.wording}}{{/link-to}}
       </li>
     {{/each}}
     </ul>
     {{render "choice-add"}}
   </script>
 
-  <script type="text/x-handlebars" data-template-name="choice-add">
+  <script type="text/x-handlebars"
+          data-template-name="choice-add">
     <label>New choice</label><br>
 
     {{input value=wording placeholder="Add an extra choice here" size="60"}}
@@ -148,15 +160,16 @@
 
   <!-- Templates partials -->
 
-  <script type="text/x-handlebars" data-template-name="story/_storiesTable">
+  <script type="text/x-handlebars"
+          data-template-name="stories/_storiesTable">
     <table>
       {{#each story in content}}
         <tr>
           <td>
-            {{#link-to 'story.view' story}}{{story.title}}{{/link-to}}
+            {{#link-to 'stories.view' story}}{{story.title}}{{/link-to}}
           </td>
           <td>
-            {{#link-to 'story.edit' story}}
+            {{#link-to 'stories.edit' story}}
               <button class="btn btn-primary btn-xs">Edit</button>
             {{/link-to}}
           </td>

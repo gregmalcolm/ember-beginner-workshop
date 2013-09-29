@@ -1,10 +1,10 @@
 App.Router.map(function() {
-  this.resource('story', { path: '/stories' }, function() {
+  this.resource('stories', { path: '/stories' }, function() {
     this.route('new');
-    this.resource('story.view', { path: ':story_id'}, function() {
+    this.resource('stories.view', { path: ':story_id'}, function() {
       this.route('section', { path: '/sections/:section_id' });
     });
-    this.resource('story.edit', { path: ':story_id/edit'}, function() {
+    this.resource('stories.edit', { path: ':story_id/edit'}, function() {
       this.route('section', { path: '/sections/:section_id' });
     });
   });
@@ -12,17 +12,17 @@ App.Router.map(function() {
 
 App.IndexRoute = Ember.Route.extend({
   redirect: function(params) {
-    this.transitionTo("story");
+    this.transitionTo("stories");
   }
 });
 
-App.StoryIndexRoute = Ember.Route.extend({
+App.StoriesIndexRoute = Ember.Route.extend({
   model: function(params) {
     return this.get("store").findAll("story");
   }
 });
 
-App.StoryNewRoute = Ember.Route.extend({
+App.StoriesNewRoute = Ember.Route.extend({
   model: function(params) {
     story = this.get("store").createRecord("story");
     section = this.get("store").createRecord("section");
@@ -31,32 +31,32 @@ App.StoryNewRoute = Ember.Route.extend({
   }
 });
 
-App.StoryRoute = Ember.Route.extend({
+App.StoriesRoute = Ember.Route.extend({
   model: function(params) {
     model = this.get("store").find("story", params.story_id);
     return model;
   }
 });
 
-App.StoryViewRoute = App.StoryRoute.extend({
+App.StoriesViewRoute = App.StoriesRoute.extend({
 });
 
 
-App.StoryViewIndexRoute = Ember.Route.extend({
+App.StoriesViewIndexRoute = Ember.Route.extend({
   model: function(params) {
-    model = this.modelFor("story.view");
+    model = this.modelFor("stories.view");
     return model;
   }
 });
 
 
-App.StoryEditRoute = App.StoryRoute.extend({
+App.StoriesEditRoute = App.StoriesRoute.extend({
 });
 
 
-App.StoryEditIndexRoute = Ember.Route.extend({
+App.StoriesEditIndexRoute = Ember.Route.extend({
   model: function(params) {
-    model = this.modelFor("story.edit");
+    model = this.modelFor("stories.edit");
     return model;
   }
 });
