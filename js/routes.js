@@ -1,9 +1,14 @@
 App.Router.map(function() {
-  // put your routes here
+  this.resource('stories', function() {
+  });
 });
 
 App.IndexRoute = Ember.Route.extend({
+});
+
+App.StoriesIndexRoute = Ember.Route.extend({
   model: function() {
-    return ['Temple Quest', 'Adventure!', 'Zombies', 'Death Race!'];
+    return this.get("store").findAll("story");
   }
 });
+

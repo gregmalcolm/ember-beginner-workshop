@@ -32,13 +32,13 @@
   </script>
 
   <!--== Templates with routes ==-->
-  <!-- / -->
+  <!-- /stories -->
   <script type="text/x-handlebars"
-          data-template-name="index">
+          data-template-name="stories/index">
 
     <h3>Stories:</h3>
     <ul>
-      {{#each title in content}}
+      {{#each}}
         <li>{{title}}</li>
       {{/each}}
     </ul>

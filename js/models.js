@@ -1,10 +1,10 @@
-//App.ApplicationAdapter = DS.FixtureAdapter.extend();
+App.ApplicationAdapter = DS.FixtureAdapter.extend();
 
-/*App.Story = DS.Model.extend({
+App.Story = DS.Model.extend({
   title: DS.attr('string'),
-  first_section: DS.belongsTo('section')
+  //first_section: DS.belongsTo('section')
 });
-*/
+
 
 /*
 App.Section = DS.Model.extend({
