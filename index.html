@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <title>Choose your own Adventure</title>
   <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="css/bootstrap-theme.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <script src="js/libs/jquery-1.9.1.js"></script>
@@ -29,34 +29,36 @@
     {{outlet}}
   </script>
 
-  <script type="text/x-handlebars" data-template-name="stories/index">
+  <script type="text/x-handlebars" data-template-name="story/index">
     <h3>Stories:</h3>
+    {{#link-to 'story.new'}}<button class = "btn btn-success">New Story</button>{{/link-to}}
+    <br>
     <ul>
       {{#each story in content}}
         <li>
         {{#link-to 'story.edit' story}}
           <button class="btn btn-primary btn-xs">Edit</button>
         {{/link-to}}
-        {{#link-to 'story' story}}{{story.title}}{{/link-to}}
+        {{#link-to 'story.view' story}}{{story.title}}{{/link-to}}
         </li>
       {{/each}}
     </ul>
   </script>
 
-  <script type="text/x-handlebars" data-template-name="story">
+  <script type="text/x-handlebars" data-template-name="story/view/index">
+    {{render section-show first_section}}
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="story/edit/index">
+    {{render section-edit first_section}}
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="story/view">
     {{#link-to 'story.edit' content}}
       <button class="btn btn-primary">Edit</button>
     {{/link-to}}
     <h3>{{title}}</h3>
     {{outlet}}
-  </script>
-
-  <script type="text/x-handlebars" data-template-name="story/index">
-    {{render section-show first_section}}
-  </script>
-
-  <script type="text/x-handlebars" data-template-name="story/edit/index">
-    {{ render section-edit first_section }}
   </script>
 
   <script type="text/x-handlebars" data-template-name="story/edit">
@@ -66,12 +68,23 @@
 
     <fieldset>
       <label>Title</label>
-      {{input value=title}}
+      {{input value=title size="80"}}
     </fieldset>
     {{ outlet }}
   </script>
 
-  <script type="text/x-handlebars" data-template-name="story/section">
+  <script type="text/x-handlebars" data-template-name="story/new">
+    <h3>New Story</h3>
+    <fieldset>
+      <label>Title</label>
+      {{input value=title size="80"}}
+    </fieldset>
+    <br>
+    <button {{action create}} class="btn btn-success">Create</button>
+    <button {{action cancel}} class="btn btn-danger">Cancel</button>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="story/view/section">
     {{render section-show content}}
   </script>
 
@@ -87,7 +100,7 @@
       <p>What do you want to do?<p>
       <ul>
         {{#each content.choices}}
-          <li>{{#link-to 'story.section' goes_to}}{{wording}}{{/link-to}}</li>
+          <li>{{#link-to 'story.view.section' goes_to}}{{wording}}{{/link-to}}</li>
         {{/each}}
       </ul>
     {{else}}

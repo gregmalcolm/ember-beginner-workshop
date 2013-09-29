@@ -1,11 +1,5 @@
-App.StoryEditController = Ember.ObjectController.extend({
+App.StoryModifyController = Ember.ObjectController.extend({
   actions: {
-    save: function() {
-      this.get("content").save().then(
-        this.didSave.bind(this)
-      );
-    },
-
     cancel: function() {
       this.get("content").rollback();
       this.transitionToRoute("story.index");
@@ -13,10 +7,38 @@ App.StoryEditController = Ember.ObjectController.extend({
   },
 
   didSave: function(story) {
-    console.log("Story saved");
     this.transitionToRoute("story.index");
   }
 });
+
+App.StoryEditController = App.StoryModifyController.extend({
+  actions: {
+    save: function() {
+      this.get("content").save().then(
+        this.didSave.bind(this)
+      );
+    }
+  },
+
+  didSave: function(story) {
+    this.transitionToRoute("story.index");
+  }
+});
+
+App.StoryNewController = App.StoryModifyController.extend({
+  actions: {
+    create: function() {
+      this.get("content").save().then(
+        this.didCreate.bind(this)
+      );
+    }
+  },
+
+  didCreate: function(story) {
+    this.transitionToRoute("story.edit", story);
+  }
+});
+
 
 App.ChoicesEditController = Ember.ArrayController.extend({
   actions: {
