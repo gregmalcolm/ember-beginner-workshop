@@ -4,6 +4,9 @@ App.Router.map(function() {
 });
 
 App.IndexRoute = Ember.Route.extend({
+  redirect: function(params) {
+    this.transitionTo("stories");
+  }
 });
 
 App.StoriesIndexRoute = Ember.Route.extend({
