@@ -1,6 +1,7 @@
 App.Router.map(function() {
   this.resource('stories', function() {
     this.route('show', { path: ':story_id'});
+    this.route('edit', { path: ':story_id/edit'});
   });
 });
 
@@ -16,10 +17,12 @@ App.StoriesIndexRoute = Ember.Route.extend({
   }
 });
 
-App.StoriesShowRoute = Ember.Route.extend({
+App.StoriesBaseRoute = Ember.Route.extend({
   model: function(params) {
     return this.get("store").find('story', params.story_id);
   }
 });
+App.StoriesShowRoute = App.StoriesBaseRoute.extend();
+App.StoriesEditRoute = App.StoriesBaseRoute.extend();
 
 
