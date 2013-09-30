@@ -47,6 +47,9 @@
   <!-- /stories/:story_id -->
   <script type="text/x-handlebars"
           data-template-name="stories/view">
+    {{#link-to 'stories.edit' content}}
+      <button class="btn btn-primary">Edit</button>
+    {{/link-to}}
     <h3>{{title}}</h3>
   </script>
 
