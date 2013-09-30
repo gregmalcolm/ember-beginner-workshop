@@ -37,7 +37,22 @@
           data-template-name="stories/index">
 
     <h3>Stories:</h3>
+    {{#link-to 'stories.new'}}<button class = "btn btn-success">New Story</button>{{/link-to}}
+    <br>
     {{partial "stories/storiesList"}}
+  </script>
+
+  <!-- /stories/:story_id -->
+  <script type="text/x-handlebars"
+          data-template-name="stories/new">
+    <h3>New Story</h3>
+    <fieldset>
+      <label>Title</label>
+      {{input value=title size="80"}}
+    </fieldset>
+    <br>
+    <button {{action create}} class="btn btn-success">Create</button>
+    <button {{action cancel}} class="btn btn-danger">Cancel</button>
   </script>
 
   <!-- /stories/:story_id -->
