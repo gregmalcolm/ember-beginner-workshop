@@ -21,7 +21,6 @@ App.Story.FIXTURES = [
   }
 ];
 
-/*
 App.Section.FIXTURES = [
   {
     id: 2000,
@@ -131,7 +130,6 @@ App.Section.FIXTURES = [
     story: 103
   }
 ]
-*/
 
 /*
 App.Choice.FIXTURES = [
