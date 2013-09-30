@@ -1,5 +1,6 @@
 App.Router.map(function() {
   this.resource('stories', function() {
+    this.route('show', { path: ':story_id'});
   });
 });
 
