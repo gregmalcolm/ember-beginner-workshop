@@ -62,6 +62,12 @@
       <button class="btn btn-primary">Edit</button>
     {{/link-to}}
     <h3>{{title}}</h3>
+    {{outlet}}
+  </script>
+
+  <!-- /stories/:story_id/index -->
+  <script type="text/x-handlebars"
+    data-template-name="stories/show/index">
     {{render section-show first_section}}
   </script>
 
@@ -78,12 +84,25 @@
     </fieldset>
   </script>
 
+
   <!--== Routeless Templates (used through 'render' helper)-->
   <!-- section-show -->
 
   <script type="text/x-handlebars"
           data-template-name="section-show">
     {{content.text}}
+    <br>
+    <br>
+    {{#if content.choices}}
+      <p>What do you want to do?<p>
+      <ul>
+        {{#each content.choices}}
+          <li>{{#link-to 'stories.show.sections' goes_to}}{{wording}}{{/link-to}}</li>
+        {{/each}}
+      </ul>
+    {{else}}
+      <p><strong>The End</strong></p>
+    {{/if}}
   </script>
 
 

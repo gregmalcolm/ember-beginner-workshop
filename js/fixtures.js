@@ -131,7 +131,6 @@ App.Section.FIXTURES = [
   }
 ]
 
-/*
 App.Choice.FIXTURES = [
   {
       id: 3000,
@@ -182,6 +181,6 @@ App.Choice.FIXTURES = [
       id: 3002,
       wording: "Head home",
       goes_to: 2020
-  }];
+  }
+];
 
-*/
