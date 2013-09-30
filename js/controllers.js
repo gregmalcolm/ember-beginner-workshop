@@ -43,3 +43,20 @@ App.StoriesNewController = App.StoriesModifyController.extend({
     this.transitionToRoute("stories.edit", story);
   }
 });
+
+App.ChoicesEditController = Ember.ArrayController.extend({
+  actions: {
+    remove: function(choice) {
+      choice.deleteRecord();
+      choice.save().then(this.didRemove.bind(this), this.didRejectRemove.bind(this));
+    }
+  },
+  didRemove: function(choice) {
+    choices = this.get("content")
+    choices.removeObject(choice)
+  },
+  didRejectRemove: function(reason) {
+    console.error("Failed to remove item", reason);
+  }
+});
+

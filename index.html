@@ -147,6 +147,7 @@
     <ul>
     {{#each choice in content}}
       <li>
+        <button {{action "remove" choice}} class="btn btn-danger btn-xs">Remove</button>
         {{#link-to 'stories.edit.sections' choice.goes_to}}{{choice.wording}}{{/link-to}}
       </li>
     {{/each}}
