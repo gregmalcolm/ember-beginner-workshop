@@ -37,11 +37,7 @@
           data-template-name="stories/index">
 
     <h3>Stories:</h3>
-    <ul>
-      {{#each story in content}}
-        <li>{{#link-to 'stories.view' story}}{{story.title}}{{/link-to}}</li>
-      {{/each}}
-    </ul>
+    {{partial "stories/storiesList"}}
   </script>
 
   <!-- /stories/:story_id -->
@@ -64,6 +60,22 @@
       <label>Title</label>
       {{input value=title size="80"}}
     </fieldset>
+  </script>
+
+  <!--== Partials ==-->
+
+  <script type="text/x-handlebars"
+          data-template-name="stories/_storiesList">
+    <ul>
+      {{#each story in content}}
+        <li>
+          {{#link-to 'stories.edit' story}}
+            <button class="btn btn-primary btn-xs">Edit</button>
+          {{/link-to}}
+          {{#link-to 'stories.view' story}}{{story.title}}{{/link-to}}
+        </li>
+      {{/each}}
+    </ul>
   </script>
 </body>
 </html>
