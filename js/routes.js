@@ -4,7 +4,9 @@ App.Router.map(function() {
     this.resource('stories.show', { path: ':story_id'}, function() {
       this.route('sections', { path: '/sections/:section_id' });
     });
-    this.route('edit', { path: ':story_id/edit'});
+    this.resource('stories.edit', { path: ':story_id/edit'}, function() {
+      this.route('sections', { path: '/sections/:section_id' });
+    });
   });
 });
 
@@ -36,8 +38,13 @@ App.StoriesNewRoute = Ember.Route.extend({
 
 App.StoriesShowIndexRoute = Ember.Route.extend({
   model: function(params) {
-    model = this.modelFor("stories.show");
-    return model;
+    return this.modelFor("stories.show");
+  }
+});
+
+App.StoriesEditIndexRoute = Ember.Route.extend({
+  model: function(params) {
+    return this.modelFor("stories.edit");
   }
 });
 

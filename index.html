@@ -65,7 +65,7 @@
     {{outlet}}
   </script>
 
-  <!-- /stories/:story_id/index -->
+  <!-- /stories/:story_id/<index> -->
   <script type="text/x-handlebars"
     data-template-name="stories/show/index">
     {{render section-show first_section}}
@@ -88,12 +88,24 @@
       <label>Title</label>
       {{input value=title size="80"}}
     </fieldset>
+    {{outlet}}
+  </script>
+
+  <!-- /stories/:story_id/edit<index> -->
+  <script type="text/x-handlebars"
+          data-template-name="stories/edit/index">
+    {{render section-edit first_section}}
+  </script>
+
+  <!-- /stories/:story_id/edit/sections/:section_id -->
+  <script type="text/x-handlebars"
+          data-template-name="stories/edit/sections">
+    {{render section-edit content}}
   </script>
 
 
   <!--== Routeless Templates (used through 'render' helper)-->
   <!-- section-show -->
-
   <script type="text/x-handlebars"
           data-template-name="section-show">
     {{content.text}}
@@ -109,6 +121,22 @@
     {{else}}
       <p><strong>The End</strong></p>
     {{/if}}
+  </script>
+
+  <!-- section-edit -->
+  <script type="text/x-handlebars"
+          data-template-name="section-edit">
+    <h4>Section: {{content.synopsis}}</h4>
+    <div>
+      <fieldset>
+        <label>Short synopsis:</label>
+        {{input value=content.synopsis}}
+      </fieldset>
+      <fieldset>
+        <label>Content:</label><br>
+        {{textarea value=content.text cols=100 rows=6}}
+      </fieldset>
+    </div>
   </script>
 
 
