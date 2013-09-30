@@ -1,5 +1,6 @@
 App.Router.map(function() {
   this.resource('stories', function() {
+    this.route('new');
     this.route('view', { path: ':story_id'});
     this.route('edit', { path: ':story_id/edit'});
   });
@@ -25,4 +26,9 @@ App.StoriesBaseRoute = Ember.Route.extend({
 App.StoriesViewRoute = App.StoriesBaseRoute.extend();
 App.StoriesEditRoute = App.StoriesBaseRoute.extend();
 
+App.StoriesNewRoute = Ember.Route.extend({
+  model: function(params) {
+    return this.get("store").createRecord("story");
+  }
+});
 
