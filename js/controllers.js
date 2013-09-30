@@ -1,3 +1,12 @@
+App.StoriesIndexController = Ember.ArrayController.extend({
+  actions: {
+    destroy: function(story) {
+      story.deleteRecord();
+      story.save();
+    }
+  }
+});
+
 App.StoriesModifyController = Ember.ObjectController.extend({
   actions: {
     cancel: function() {
