@@ -87,6 +87,7 @@
           {{#link-to 'stories.edit' story}}
             <button class="btn btn-primary btn-xs">Edit</button>
           {{/link-to}}
+          <button {{action "destroy" story}} class="btn btn-danger btn-xs">Delete</button>
           {{#link-to 'stories.show' story}}{{story.title}}{{/link-to}}
         </li>
       {{/each}}
