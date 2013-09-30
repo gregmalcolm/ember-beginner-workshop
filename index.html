@@ -136,9 +136,22 @@
         <label>Content:</label><br>
         {{textarea value=content.text cols=100 rows=6}}
       </fieldset>
+      {{render choices-edit content.choices}}
     </div>
   </script>
 
+  <!-- choices-edit -->
+  <script type="text/x-handlebars"
+          data-template-name="choices-edit">
+    <h4>Choices:</h4>
+    <ul>
+    {{#each choice in content}}
+      <li>
+        {{#link-to 'stories.edit.sections' choice.goes_to}}{{choice.wording}}{{/link-to}}
+      </li>
+    {{/each}}
+    </ul>
+  </script>
 
   <!--== Partials ==-->
 
