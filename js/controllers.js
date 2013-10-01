@@ -60,3 +60,37 @@ App.ChoicesEditController = Ember.ArrayController.extend({
   }
 });
 
+App.ChoiceAddController = Ember.ObjectController.extend({
+  needs: "section-edit",
+
+  content: function() {
+    return this.createChoiceObject();
+  }.property(''),
+
+  actions: {
+    add: function() {
+      choice = this.get("content");
+      choice.set("goes_to", this.newSection());
+      this.parentController().pushObject(choice);
+      choice.save().then(this.didAdd.bind(this));
+    }
+  },
+
+  didAdd: function() {
+    this.set("content", this.createChoiceObject());
+  },
+
+  createChoiceObject: function() {
+    return this.get("store").createRecord('choice');
+  },
+
+  parentController: function() {
+    return this.get("controllers.section-edit.choices");
+  },
+
+  newSection: function() {
+    return this.get("store").createRecord('section');
+  }
+
+});
+
