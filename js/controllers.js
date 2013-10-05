@@ -1,3 +1,5 @@
+App.ApplicationController = Ember.Controller.extend();
+
 App.StoriesIndexController = Ember.ArrayController.extend({
   actions: {
     destroy: function(story) {
@@ -15,6 +17,22 @@ App.StoriesModifyController = Ember.ObjectController.extend({
     }
   },
 });
+
+App.StoriesShowController = Ember.ObjectController.extend({
+  needs: "application",
+
+  actions: {
+    edit: function() {
+      if (this.get("controllers.application.currentPath") ===
+          "stories.show.sections") {
+        this.transitionToRoute("stories.edit.sections");
+      } else {
+        this.transitionToRoute("stories.edit");
+      }
+    }
+  },
+
+})
 
 App.StoriesEditController = App.StoriesModifyController.extend({
   actions: {
@@ -60,8 +78,10 @@ App.ChoicesEditController = Ember.ArrayController.extend({
   }
 });
 
+App.StoriesEditSectionsController = Ember.ObjectController.extend();
+
 App.ChoiceAddController = Ember.ObjectController.extend({
-  needs: "section-edit",
+  needs: "storiesEditSections",
 
   content: function() {
     return this.createChoiceObject();
@@ -85,7 +105,7 @@ App.ChoiceAddController = Ember.ObjectController.extend({
   },
 
   parentController: function() {
-    return this.get("controllers.section-edit.choices");
+    return this.get("controllers.storiesEditSections.choices");
   },
 
   newSection: function() {

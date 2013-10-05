@@ -36,9 +36,16 @@ App.StoriesNewRoute = Ember.Route.extend({
   }
 });
 
-App.StoriesShowIndexRoute = Ember.Route.extend({
+App.StoriesShowBaseRoute = Ember.Route.extend({
   model: function(params) {
     return this.modelFor("stories.show");
+  }
+});
+App.StoriesShowIndexRoute    = App.StoriesShowBaseRoute.extend({});
+App.StoriesShowSectionsRoute = App.StoriesShowBaseRoute.extend({
+  model: function(params) {
+    this._super(params);
+    return this.store.find('section', params.section_id);
   }
 });
 

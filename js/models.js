@@ -5,7 +5,6 @@ App.Story = DS.Model.extend({
   first_section: DS.belongsTo('section')
 });
 
-
 App.Section = DS.Model.extend({
   synopsis: DS.attr('string'),
   text: DS.attr('string'),
