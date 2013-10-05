@@ -32,7 +32,10 @@ App.StoriesEditRoute = App.StoriesBaseRoute.extend();
 
 App.StoriesNewRoute = Ember.Route.extend({
   model: function(params) {
-    return this.get("store").createRecord("story");
+    story = this.get("store").createRecord("story");
+    section = this.get("store").createRecord("section");
+    story.set("first_section", section);
+    return story;
   }
 });
 

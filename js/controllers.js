@@ -81,7 +81,7 @@ App.ChoicesEditController = Ember.ArrayController.extend({
 App.StoriesEditSectionsController = Ember.ObjectController.extend();
 
 App.ChoiceAddController = Ember.ObjectController.extend({
-  needs: "storiesEditSections",
+  needs: ["storiesEditSections","section-edit"],
 
   content: function() {
     return this.createChoiceObject();
@@ -92,7 +92,7 @@ App.ChoiceAddController = Ember.ObjectController.extend({
       choice = this.get("content");
       choice.set("goes_to", this.newSection());
       this.parentController().pushObject(choice);
-      choice.save().then(this.didAdd.bind(this));
+      choice.save().then(this.didAdd.bind(this), this.didRejectAdd.bind(this));
     }
   },
 
@@ -100,12 +100,20 @@ App.ChoiceAddController = Ember.ObjectController.extend({
     this.set("content", this.createChoiceObject());
   },
 
+  didRejectAdd: function(reason) {
+    console.error("reason");
+  },
+
   createChoiceObject: function() {
     return this.get("store").createRecord('choice');
   },
 
   parentController: function() {
-    return this.get("controllers.storiesEditSections.choices");
+	section = this.get("controllers.storiesEditSections.choices");
+	if (section === undefined) {
+	  section = this.get("controllers.section-edit.choices");
+	}
+	return section;
   },
 
   newSection: function() {
