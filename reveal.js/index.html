@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>reveal.js - Ember Beginners Workshop</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/github.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+        <section data-background="images/posh-hamster-wallpaper.jpg">
+          <div style="position:fixed; left:-45px; top: -300px">
+            <h1 style="color:white;">Ember.js Workshop</h1>
+            <p style="color:white;">
+              <small>Greg Malcolm <a href="http://github.com/gregmalcolm" style="color: #71e9f4">github.com/gregmalcolm</a> <a href="http://twitter.com/gregmalcolm" style="color: #71e9f4">@gregmalcolm</a></small>
+            </p>
+          </div>
+				</section>
+        <section>
+          <h2>Preparation</h2>
+          <p>See README.md for details of things to install</p>
+        </section>
+        <section>
+          <h2>Starting project</h2>
+          <div style="text-align: left;">
+            <p>We're going to be changing the following files:</p>
+            <ul style="margin-left: 75px;">
+              <li><b>index.html</b> - Handlebar templates</li>
+            </ul>
+            <br>
+            <br>
+            <p>Ember javascript code:</p>
+            <ul style="margin-left: 75px;">
+              <li><b>js/app.js</b></li>
+              <li><b>js/models.js</b></li>
+              <li><b>js/fixtures.js</b></li>
+              <li><b>js/controllers.js</b></li>
+              <li><b>js/routes.js</b></li>
+            </ul>
+          </div>
+        </section>
+        <section>
+          <h2>Starting Project</h2>
+          <div style="text-align: left;">
+            <p>We need a simple http server for Ember to work correctly.</p>
+            <br><br>
+            <p>Start the server by running this:</p>
+            <pre><code class="bash">$ bin/server</code></pre>
+            <p>... or...</p>
+            <pre><code class="dos">C:\ember-beginner-workshop> bin\server.cmd</code></pre>
+            <p>Then go look at the project in localhost:3000 in Chrome</p>
+          </div>
+        </section>
+        <section>
+          <h2>Starting Project</h2>
+          <a class="image" href="http://localhost:3000" target="_blank">
+            <img src="images\ember-start-app.png" style="border: 0; box-shadow: none;">
+          </a>
+        </section>
+        <section>
+          <h2>Starting Project</h2>
+          <p>For reference consule the <a href="http://emberjs.com/guides/">Ember Guides</a>:</p>
+          <a class="image" href="http://emberjs.com/guides/" target="_blank">
+            <img src="images\ember-guide.png" style="border: 0; box-shadow: none;">
+          </a>
+        </section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme || 'beige', // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
