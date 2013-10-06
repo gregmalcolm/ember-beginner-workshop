@@ -54,7 +54,7 @@
           <div style="text-align: left;">
             <p>We're going to be changing the following files:</p>
             <ul style="margin-left: 75px;">
-              <li><b>index.html</b> - Handlebar templates</li>
+              <li><b>File: index.html</b> - Handlebar templates</li>
             </ul>
             <br>
             <br>
@@ -93,9 +93,11 @@
           <h2>Starting Project</h2>
           <p>For reference consule the <a href="http://emberjs.com/guides/">Ember Guides</a>:</p>
           <a class="image" href="http://emberjs.com/guides/" target="_blank">
-            <img src="images\ember-guide.png" style="border: 0; box-shadow: none;">
+            <img width="80%" src="images\ember-guide.png" style="border: 0; box-shadow: none;">
           </a>
         </section>
+
+<!-- Objective 1 - List Stories -->
 
         <section>
           <h2>Objective 1</h2>
@@ -130,7 +132,7 @@
             <pre><code class="html"
 >...
 <title>Choose Your Own Adventure</title>
-...</code><code style="background: #eee;">index.html</code></pre>
+...</code><code style="background: #eee;">File: index.html</code></pre>
           </div>
         </section>
 
@@ -169,7 +171,7 @@
   model: function() {
     return ['Temple Quest', 'Adventure!', 'Zombies', 'Death Race!'];
   }
-});</code><code style="background: #eee;">js/routes.js</code></pre>
+});</code><code style="background: #eee;">File: js/routes.js</code></pre>
           </div>
         </section>
 
@@ -190,7 +192,7 @@
       <li>{{title}}</li>
     {{/each}}
    </ul>
-</script></code><code style="background-color:#eee;">index.html</code></pre>
+</script></code><code style="background-color:#eee;">File: index.html</code></pre>
           </div>
         </section>
 
@@ -204,9 +206,11 @@
           <pre><code class="bash">$ git diff -w fbe2d index.html js</code></pre>
         </section>
 
+<!-- Objective 2 - Models and Fixtures -->
+
         <section>
           <h2>Objective 2</h2>
-          <h2>Use ember-data Models and Fixtures for data</h2>
+          <h3>Use ember-data Models and Fixtures for data</h3>
           <div style="text-align: left;">
             <p>Create a new Ember Route called stories that lists the available stories</p>
             <p>They will be viewable from <a href="http://localhost:3000/#/stories">http://localhost:3000/#/stories</a>
@@ -238,7 +242,7 @@
             <pre><code class="html"
 >App.Router.map(function() {
   this.resource('stories', function() {});
-});</code><code style="background: #eee;">js/routes.js</code></pre>
+});</code><code style="background: #eee;">File: js/routes.js</code></pre>
           </div>
         </section>
 
@@ -252,7 +256,7 @@
   model: function() {
     return ['Temple Quest', 'Adventure!', 'Zombies', 'Death Race!'];
   }
-});</code><code style="background: #eee;">js/routes.js</code></pre>
+});</code><code style="background: #eee;">File: js/routes.js</code></pre>
           </div>
         </section>
 
@@ -267,7 +271,7 @@
 App.Story = DS.Model.extend({
   title: DS.attr('string'),
   //first_section: DS.belongsTo('section')
-});</code><code style="background: #eee;">js/models.js</code></pre>
+});</code><code style="background: #eee;">File: js/models.js</code></pre>
           </div>
         </section>
 
@@ -298,7 +302,7 @@ App.Story = DS.Model.extend({
     title: 'Deathrace!',
     first_section: 2300
   }
-];</code><code style="background: #eee;">js/fixtures.js</code></pre>
+];</code><code style="background: #eee;">File: js/fixtures.js</code></pre>
           </div>
         </section>
 
@@ -312,7 +316,7 @@ App.Story = DS.Model.extend({
   model: function() {
     return this.get("store").findAll("story");
   }
-});</code><code style="background: #eee;">js/routes.js</code></pre>
+});</code><code style="background: #eee;">File: js/routes.js</code></pre>
           </div>
         </section>
 
@@ -332,7 +336,7 @@ App.Story = DS.Model.extend({
       <li>{{title}}</li>
     {{/each}}
   </ul>
-</script></code><code style="background: #eee;">index.html</code></pre>
+&lt;/script></code><code style="background: #eee;">File: index.html</code></pre>
           </div>
         </section>
 
@@ -352,7 +356,7 @@ App.Story = DS.Model.extend({
       <li>{{title}}</li>
     {{/each}}
   </ul>
-</script></code><code style="background: #eee;">index.html</code></pre>
+&lt;/script></code><code style="background: #eee;">File: index.html</code></pre>
           </div>
         </section>
 
@@ -366,11 +370,12 @@ App.Story = DS.Model.extend({
   redirect: function(params) {
     this.transitionTo("stories");
   }
-});</code><code style="background: #eee;">js/routes.js</code></pre>
+});</code><code style="background: #eee;">File: js/routes.js</code></pre>
           </div>
         </section>
 
         <section>
+          <h2>Using ember-data Models and Fixtures for data</h2>
           <h3>List stories in the Index Route</h3>
           <p>Done!</p>
           <a class="image" href="http://localhost:3000/#/stories" target="_blank">
@@ -378,6 +383,133 @@ App.Story = DS.Model.extend({
           </a>
           <p><b>Problems?</b> Compare with working version:</p>
           <pre><code class="bash">$ git diff -w 424ae index.html js</code></pre>
+        </section>
+
+<!-- Objective 3 - Show Story -->
+
+        <section>
+          <h2>Objective 3</h2>
+          <h3>Create a Story Viewer page</h3>
+          <div style="text-align: left;">
+            <p>Create a new Ember Route called story for reading a story</p>
+          </div>
+          <a class="image" href="http://localhost:3000/#/stories" target="_blank">
+            <img width="40%" src="images\show-story.png" style="border: 0; box-shadow: none;">
+          </a>
+        </section>
+
+        <section>
+          <h2>Create a Story Viewer page</h2>
+          <div style="text-align: left;">
+            <h3>Tasks</h3>
+            <ul>
+              <li>Create a 'show' Route</li>
+              <li>Create a 'show' Template</li>
+              <li>Configure the Story Show Route to load the Story Model</li>
+            </ul>
+          </div>
+        </section>
+
+        <section>
+          <h2>Create a Story Viewer page</h2>
+          <div style="text-align: left;">
+            <h4>Task - Create a 'show' Route</h4>
+            <p>Update the App.Router object to include the 'show' entry:</p>
+            <pre><code class="javascript"
+>App.Router.map(function() {
+  this.resource('stories', function() {
+    this.route('show', { path: ':story_id'});
+  });
+});</code><code style="background: #eee;">File: js/routes.js</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Create a Story Viewer page</h2>
+          <div style="text-align: left;">
+            <h4>Task - Create a 'show' Route</h4>
+            <p>In the stories/index Template replace the title binding with a link-to helper:</p>
+            <pre><code class="html"
+><!--== Templates with routes ==-->
+<!-- /stories -->
+&lt;script type="text/x-handlebars"
+        data-template-name="stories/index">
+
+  <h3>Stories:</h3>
+  <ul>
+    {{#each story in content}}
+      <li>{{#link-to 'stories.show' story}}
+        {{story.title}}
+      {{/link-to}}</li>
+    {{/each}}
+  </ul>
+&lt;/script></code><code style="background: #eee;">File: index.html</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Create a Story Viewer page</h2>
+          <div style="text-align: left;">
+            <h4>Task - Create a 'show' Template</h4>
+            <p>Insert the following under the stories index template:</p>
+            <pre><code class="html"
+><!-- /stories/:story_id -->
+&lt;script type="text/x-handlebars"
+        data-template-name="stories/show">
+  <h3>{{title}}</h3>
+&lt;/script></code><code style="background: #eee;">File: index.html</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Create a Story Viewer page</h2>
+          <div style="text-align: left;">
+            <h4>Configure the Story Show Route to load the Story Model</h4>
+            <p>Insert the following StoriesShow Route definition to js/routes.js:</p>
+            <pre><code class="javascript"
+>App.StoriesShowRoute = Ember.Route.extend({
+  model: function(params) {
+    return this.get("store").find('story', params.story_id);
+  }
+});</code><code style="background: #eee;">File: js/routes.js</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Create a Story Viewer page</h2>
+          <p>Fini!</p>
+          <a class="image" href="http://localhost:3000/#/stories/100" target="_blank">
+            <img width="50%" src="images\show-story2.png" style="border: 0; box-shadow: none;">
+          </a>
+          <p><b>Problems?</b> Compare with working version:</p>
+          <pre><code class="bash">$ git diff -w 8745e index.html js</code></pre>
+        </section>
+
+<!-- Objective 4 - Story Editing -->
+
+        <section>
+          <h2>Objective 4</h2>
+          <h3>Story Editor</h3>
+          <div style="text-align: left;">
+            <p>Editing would be nice!</p>
+          </div>
+          <a class="image" href="http://localhost:3000/#/stories" target="_blank">
+            <img width="80%" src="images\edit-story.png" style="border: 0; box-shadow: none;">
+          </a>
+        </section>
+
+        <section>
+          <h2>Story Editor</h2>
+          <div style="text-align: left;">
+            <h3>Tasks</h3>
+            <ul>
+              <li>Create an edit route</li>
+              <li>Add a save button</li>
+              <li>Add a cancel button</li>
+              <li>Go to the Show page after saving</li>
+              <li>Update stories list page</li>
+            </ul>
+          </div>
         </section>
 
 			</div>
