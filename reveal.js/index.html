@@ -131,7 +131,6 @@
 >...
 <title>Choose Your Own Adventure</title>
 ...</code><code style="background: #eee;">index.html</code></pre>
-            </ul>
           </div>
         </section>
 
@@ -142,7 +141,7 @@
             <p>Change out the Application Template for one containing a
             Bootstrap navbar.</p><br>
             <p>Replace this:</p>
-            <pre><code class="html"
+            <pre><code></code><code style="color:#d00;"
 ><script type="text/x-handlebars">
   <h2>Welcome to Ember.js</h2>
 </script></code></pre>
@@ -157,7 +156,6 @@
   </nav>
   {{outlet}}
 </script></code></pre>
-            </ul>
           </div>
         </section>
 
@@ -172,7 +170,6 @@
     return ['Temple Quest', 'Adventure!', 'Zombies', 'Death Race!'];
   }
 });</code><code style="background: #eee;">js/routes.js</code></pre>
-            </ul>
           </div>
         </section>
 
@@ -194,7 +191,6 @@
     {{/each}}
    </ul>
 </script></code><code style="background-color:#eee;">index.html</code></pre>
-            </ul>
           </div>
         </section>
 
@@ -205,9 +201,8 @@
             <img width="30%" src="images\list-stories.png" style="border: 0; box-shadow: none;">
           </a>
           <p><b>Problems?</b> Try running this to compare against a working version:</p>
-          <pre><code class="bash">$ git diff fbe2d index.html js</code></pre>
+          <pre><code class="bash">$ git diff -w fbe2d index.html js</code></pre>
         </section>
-
 
         <section>
           <h2>Objective 2</h2>
@@ -220,6 +215,171 @@
             <img width="40%" src="images\stories-route.png" style="border: 0; box-shadow: none;">
           </a>
         </section>
+
+        <section>
+          <h2>Using ember-data Models and Fixtures for data</h2>
+          <div style="text-align: left;">
+            <h3>Tasks</h3>
+            <ul>
+              <li>Create a new Route called 'stories'</li>
+              <li>Set the Stories Route model to return 'story' Models</li>
+              <li>Make the default Index Route reroute to Stories Route</li>
+            </ul>
+          </div>
+        </section>
+
+        <section>
+          <h2>Using ember-data Models and Fixtures for data</h2>
+          <div style="text-align: left;">
+            <h4>Task - Create a new Route called 'stories'</h4>
+            <p>Configure the Router to support <b>#/stories</b>.</p>
+            <br>
+            <p>Replace the App.Router conguration with this:</p>
+            <pre><code class="html"
+>App.Router.map(function() {
+  this.resource('stories', function() {});
+});</code><code style="background: #eee;">js/routes.js</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Using ember-data Models and Fixtures for data</h2>
+          <div style="text-align: left;">
+            <h4>Task - Create a new Route called 'stories'</h4>
+            <p>Get rid of the old Index Route implementation:</p>
+            <pre><code></code><code style="color: #d00;"
+>App.IndexRoute = Ember.Route.extend({
+  model: function() {
+    return ['Temple Quest', 'Adventure!', 'Zombies', 'Death Race!'];
+  }
+});</code><code style="background: #eee;">js/routes.js</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Using ember-data Models and Fixtures for data</h2>
+          <div style="text-align: left;">
+            <h4>Task - Set the Stories Route model to return 'story' Models</h4>
+            <p>Uncomment the Fixture Adapter and Story Model in js/models.js</p>
+            <pre><code class="javascript"
+>App.ApplicationAdapter = DS.FixtureAdapter.extend();
+
+App.Story = DS.Model.extend({
+  title: DS.attr('string'),
+  //first_section: DS.belongsTo('section')
+});</code><code style="background: #eee;">js/models.js</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Using ember-data Models and Fixtures for data</h2>
+          <div style="text-align: left;">
+            <h4>Task - Set the Stories Route model to return 'story' Models</h4>
+            <p>Uncomment the Story Fixture in js/fixtures.js</p>
+            <pre><code class="javascript"
+>App.Story.FIXTURES = [
+  {
+    id: 100,
+    title: 'Temple Quest',
+    first_section: 2000
+  },
+  {
+    id: 101,
+    title: 'Adventure!',
+    first_section: 2100
+  },
+  {
+    id: 102,
+    title: 'Zombies!',
+    first_section: 2200
+  },
+  {
+    id: 103,
+    title: 'Deathrace!',
+    first_section: 2300
+  }
+];</code><code style="background: #eee;">js/fixtures.js</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Using ember-data Models and Fixtures for data</h2>
+          <div style="text-align: left;">
+            <h4>Task - Set the Stories Route model to return 'story' Models</h4>
+            <p>Implement the StoriesIndex Route</p>
+            <pre><code class="javascript"
+>App.StoriesIndexRoute = Ember.Route.extend({
+  model: function() {
+    return this.get("store").findAll("story");
+  }
+});</code><code style="background: #eee;">js/routes.js</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Using ember-data Models and Fixtures for data</h2>
+          <div style="text-align: left;">
+            <h4>Task - Set the Stories Route model to return 'story' Models</h4>
+            <p>Remove the Index Template from index.html</p>
+            <pre><code></code><code style="color: #d00;"
+><!-- / -->
+&lt;script type="text/x-handlebars"
+        data-template-name="index">
+
+  <h3>Stories:</h3>
+  <ul>
+    {{#each title in content}}
+      <li>{{title}}</li>
+    {{/each}}
+  </ul>
+</script></code><code style="background: #eee;">index.html</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Using ember-data Models and Fixtures for data</h2>
+          <div style="text-align: left;">
+            <h4>Task - Set the Stories Route model to return 'story' Models</h4>
+            <p>Insert the replacement stories/index page</p>
+            <pre><code class="html"
+><!-- /stories -->
+&lt;script type="text/x-handlebars"
+        data-template-name="stories/index">
+
+  <h3>Stories:</h3>
+  <ul>
+    {{#each}}
+      <li>{{title}}</li>
+    {{/each}}
+  </ul>
+</script></code><code style="background: #eee;">index.html</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Using ember-data Models and Fixtures for data</h2>
+          <div style="text-align: left;">
+            <h4>Task - Make the default Index Route reroute to Stories Route</h4>
+            <p>Implement a new Index Route in js/routes.js</p>
+            <pre><code class="javascript"
+>App.IndexRoute = Ember.Route.extend({
+  redirect: function(params) {
+    this.transitionTo("stories");
+  }
+});</code><code style="background: #eee;">js/routes.js</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h3>List stories in the Index Route</h3>
+          <p>Done!</p>
+          <a class="image" href="http://localhost:3000/#/stories" target="_blank">
+            <img width="50%" src="images\stories-route.png" style="border: 0; box-shadow: none;">
+          </a>
+          <p><b>Problems?</b> Compare with working version:</p>
+          <pre><code class="bash">$ git diff -w 424ae index.html js</code></pre>
+        </section>
+
 			</div>
 		</div>
 
