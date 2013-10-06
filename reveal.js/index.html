@@ -43,10 +43,12 @@
             </p>
           </div>
 				</section>
+
         <section>
           <h2>Preparation</h2>
           <p>See README.md for details of things to install</p>
         </section>
+
         <section>
           <h2>Starting project</h2>
           <div style="text-align: left;">
@@ -66,6 +68,7 @@
             </ul>
           </div>
         </section>
+
         <section>
           <h2>Starting Project</h2>
           <div style="text-align: left;">
@@ -78,17 +81,143 @@
             <p>Then go look at the project in localhost:3000 in Chrome</p>
           </div>
         </section>
+
         <section>
           <h2>Starting Project</h2>
           <a class="image" href="http://localhost:3000" target="_blank">
             <img src="images\ember-start-app.png" style="border: 0; box-shadow: none;">
           </a>
         </section>
+
         <section>
           <h2>Starting Project</h2>
           <p>For reference consule the <a href="http://emberjs.com/guides/">Ember Guides</a>:</p>
           <a class="image" href="http://emberjs.com/guides/" target="_blank">
             <img src="images\ember-guide.png" style="border: 0; box-shadow: none;">
+          </a>
+        </section>
+
+        <section>
+          <h2>Objective 1</h2>
+          <h3>List stories in the Index Route</h3>
+          <div style="text-align: left;">
+            <p>Customize the Index Route to show stories instead of colors</p>
+          </div>
+          <a class="image" href="http://localhost:3000/#/stories" target="_blank">
+            <img src="images\list-stories.png" style="border: 0; box-shadow: none;">
+          </a>
+        </section>
+
+        <section>
+          <h2>Objective 1</h2>
+          <h3>List stories in the Index Route</h3>
+          <div style="text-align: left;">
+            <h3>Tasks</h3>
+            <ul>
+              <li>Personalize the page design</li>
+              <li>Change Application Template to show a simple navbar</li>
+              <li>Change the Index Route to use story names as the Model</li>
+              <li>Show stories in the Index Template</li>
+            </ul>
+          </div>
+        </section>
+
+        <section>
+          <h3>List stories in the Index Route</h3>
+          <div style="text-align: left;">
+            <h4>Task - Personalize the page design</h4>
+            <p>Personalize the title</p>
+            <pre><code class="html"
+>...
+<title>Choose Your Own Adventure</title>
+...</code><code style="background: #eee;">index.html</code></pre>
+            </ul>
+          </div>
+        </section>
+
+        <section>
+          <h3>List stories in the Index Route</h3>
+          <div style="text-align: left;">
+            <h4>Task - Personalize the page design</h4>
+            <p>Change out the Application Template for one containing a
+            Bootstrap navbar.</p><br>
+            <p>Replace this:</p>
+            <pre><code class="html"
+><script type="text/x-handlebars">
+  <h2>Welcome to Ember.js</h2>
+</script></code></pre>
+            <p>With this:</p>
+            <pre><code class="html"><!--== Templates ==-->
+<script type="text/x-handlebars">
+  <nav class="navbar navbar-inverse navbar-fixed-top"
+       role="navigation">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Choose your own Adventure</a>
+    </div>
+  </nav>
+  {{outlet}}
+</script></code></pre>
+            </ul>
+          </div>
+        </section>
+
+        <section>
+          <h3>List stories in the Index Route</h3>
+          <div style="text-align: left;">
+            <h4>Task - Change the Index Route to use story names as the Model</h4>
+            <p>Change the Index Route in js/routes.js to look like this:</p>
+            <pre><code class="javascript"
+>App.IndexRoute = Ember.Route.extend({
+  model: function() {
+    return ['Temple Quest', 'Adventure!', 'Zombies', 'Death Race!'];
+  }
+});</code><code style="background: #eee;">js/routes.js</code></pre>
+            </ul>
+          </div>
+        </section>
+
+        <section>
+          <h3>List stories in the Index Route</h3>
+          <div style="text-align: left;">
+            <h4>Task - Show stories in the Index Template</h4>
+            <p>In index.html, find the Index Template (it contains <b>data-template-name="index"</b>).</p>
+            <br>
+            <p>Replace it with this</p>
+            <pre><code class="html"><!--== Templates with routes ==-->
+<!-- / -->
+<script type="text/x-handlebars"
+        data-template-name="index">
+  <h3>Stories:</h3>
+   <ul>
+    {{#each title in content}}
+      <li>{{title}}</li>
+    {{/each}}
+   </ul>
+</script></code><code style="background-color:#eee;">index.html</code></pre>
+            </ul>
+          </div>
+        </section>
+
+        <section>
+          <h3>List stories in the Index Route</h3>
+          <p>You should now have this:</p>
+          <a class="image" href="http://localhost:3000/#/stories" target="_blank">
+            <img width="30%" src="images\list-stories.png" style="border: 0; box-shadow: none;">
+          </a>
+          <p><b>Problems?</b> Try running this to compare against a working version:</p>
+          <pre><code class="bash">$ git diff fbe2d index.html js</code></pre>
+        </section>
+
+
+        <section>
+          <h2>Objective 2</h2>
+          <h2>Use ember-data Models and Fixtures for data</h2>
+          <div style="text-align: left;">
+            <p>Create a new Ember Route called stories that lists the available stories</p>
+            <p>They will be viewable from <a href="http://localhost:3000/#/stories">http://localhost:3000/#/stories</a>
+          </div>
+          <a class="image" href="http://localhost:3000/#/stories" target="_blank">
+            <img width="40%" src="images\stories-route.png" style="border: 0; box-shadow: none;">
           </a>
         </section>
 			</div>
