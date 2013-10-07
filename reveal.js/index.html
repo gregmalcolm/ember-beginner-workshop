@@ -4,10 +4,10 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>reveal.js - Ember Beginners Workshop</title>
+		<title>Ember Beginners Workshop - reveal.js slides</title>
 
-		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-		<meta name="author" content="Hakim El Hattab">
+		<meta name="description" content="Ember Beginners Workshop slides">
+		<meta name="author" content="Greg Malcolm">
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -264,7 +264,7 @@
           <h2>Using ember-data Models and Fixtures for data</h2>
           <div style="text-align: left;">
             <h3>Task - Set the Stories Route model to return 'story' Models</h3>
-            <p>Uncomment the Fixture Adapter and Story Model in js/models.js</p>
+            <p>Uncomment the Fixture Adapter and Story Model in js/models.js. Leave <b>first_section</b> attribute commented out:</p>
             <pre><code class="javascript"
 >App.ApplicationAdapter = DS.FixtureAdapter.extend();
 
@@ -926,7 +926,7 @@ App.StoriesEditRoute = App.StoriesBaseRoute.extend();</code><code style="backgro
         </section>
 
         <section>
-          <h2>Creating and Destroying Stories</h3>
+          <h2>Showing Story Sections</h2>
           <div style="text-align: left;">
             <h3>Tasks</h3>
             <ul>
@@ -936,6 +936,277 @@ App.StoriesEditRoute = App.StoriesBaseRoute.extend();</code><code style="backgro
             </ul>
           </div>
         </section>
+
+        <section>
+          <h2>Showing Story Sections</h2>
+          <div style="text-align: left;">
+            <h3>Task - Show first story section</h3>
+            <p>Uncomment <b>first_section</b> attribute of Story Model:</p>
+            <pre><code class="javascript"
+>App.Story = DS.Model.extend({
+  title: DS.attr('string'),
+  first_section: DS.belongsTo('section')
+});</code><code style="background: #eee;">File: js/models.js</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Showing Story Sections</h2>
+          <div style="text-align: left;">
+            <h3>Task - Show first story section</h3>
+            <p>Uncomment Section Model (except <b>choices</b> attribute):</p>
+            <pre><code class="javascript"
+>App.Section = DS.Model.extend({
+  synopsis: DS.attr('string'),
+  text: DS.attr('string'),
+  story: DS.belongsTo('story'),
+//  choices: DS.hasMany('choice', {async: true, inverse: 'section'})
+});</code><code style="background: #eee;">File: js/models.js</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Showing Story Sections</h2>
+          <div style="text-align: left;">
+            <h3>Task - Show first story section</h3>
+            <p>Uncomment Section Fixtures:</p>
+            <pre><code class="javascript"
+>App.Section.FIXTURES = [
+  {
+    id: 2000,
+    synopsis: "Intro",
+    text: "It is a lovely summers day. While lying on your back watching " +
+          "clouds you notice a small dark dot in the sky above you.",
+    story: 100,
+    choices: [3000, 3001, 3002]
+  },
+  ...
+}];</code><code style="background: #eee;">File: js/fixtures.js</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Showing Story Sections</h2>
+          <div style="text-align: left;">
+            <h3>Task - Show first story section</h3>
+            <p>Add a new Template (<b>section-show</b>):</p>
+            <pre><code class="javascript"
+><!--== Routeless Templates (used through 'render' helper)-->
+<!-- section-show -->
+
+<script type="text/x-handlebars"
+        data-template-name="section-show">
+  {{content.text}}
+</script></code><code style="background: #eee;">File: js/fixtures.js</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Showing Story Sections</h2>
+          <div style="text-align: left;">
+            <h3>Task - Show first story section</h3>
+            <p>Add Render Helper to stories/show Template:</p>
+            <pre><code class="javascript"
+><!-- /stories/:story_id -->
+<script type="text/x-handlebars"
+        data-template-name="stories/show">
+  {{#link-to 'stories.edit' content}}
+    <button class="btn btn-primary">Edit</button>
+  {{/link-to}}
+  <h3>{{title}}</h3>
+  {{render section-show first_section}}
+</script></code><code style="background: #eee;">File: js/fixtures.js</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Showing Story Sections</h2>
+          <div style="text-align: left;">
+            <h3>Task - Display section choices</h3>
+            <p>Uncomment Section Model's <b>choices</b> attribute:</p>
+            <pre><code class="javascript"
+>App.Section = DS.Model.extend({
+  synopsis: DS.attr('string'),
+  text: DS.attr('string'),
+  story: DS.belongsTo('story'),
+  choices: DS.hasMany('choice', {async: true, inverse: 'section'})
+});</code><code style="background: #eee;">File: js/models.js</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Showing Story Sections</h2>
+          <div style="text-align: left;">
+            <h3>Task - Display section choices</h3>
+            <p>Uncomment Choice Model:</p>
+            <pre><code class="javascript"
+>App.Choice = DS.Model.extend({
+  wording: DS.attr('string'),
+  section: DS.belongsTo('section'),
+  goes_to: DS.belongsTo('section')
+});</code><code style="background: #eee;">File: js/models.js</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Showing Story Sections</h2>
+          <div style="text-align: left;">
+            <h3>Task - Display section choices</h3>
+            <p>Uncomment Choice Fixtures:</p>
+            <pre><code class="javascript"
+>App.Choice.FIXTURES = [
+  {
+      id: 3000,
+      wording: "Go back to sleep",
+      goes_to: 2010
+  },
+  ...
+}];</code><code style="background: #eee;">File: js/fixtures.js</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Showing Story Sections</h2>
+          <div style="text-align: left;">
+            <h3>Task - Display section choices</h3>
+            <p>Replace Show Route with a Resource containing Sections route:</p>
+            <pre><code class="javascript"
+>App.Router.map(function() {
+  this.resource('stories', function() {
+    this.route('new');
+    this.resource('stories.show', { path: ':story_id'}, function() {
+      this.route('sections', { path: '/sections/:section_id' });
+    });
+    this.route('edit', { path: ':story_id/edit'});
+  });
+});</code><code style="background: #eee;">File: js/routes.js</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Showing Story Sections</h2>
+          <div style="text-align: left;">
+            <h3>Task - Display section choices</h3>
+            <p>Implement new StoriesShowIndex Route:</p>
+            <pre><code class="javascript"
+>App.StoriesShowIndexRoute = Ember.Route.extend({
+  model: function(params) {
+    model = this.modelFor("stories.show");
+    return model;
+  }
+});</code><code style="background: #eee;">File: js/routes.js</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Showing Story Sections</h2>
+          <div style="text-align: left;">
+            <h3>Task - Display section choices</h3>
+            <p>Create a new stories/show/index Template:</p>
+            <pre><code class="html"
+><!-- /stories/:story_id/<index> -->
+&lt;script type="text/x-handlebars"
+  data-template-name="stories/show/index">
+  {{render section-show first_section}}
+&lt;/script></code><code style="background: #eee;">File: index.html</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Showing Story Sections</h2>
+          <div style="text-align: left;">
+            <h3>Task - Display section choices</h3>
+            <p>Inside stories/show Template replace the {{render}} declaration with {{outlet}}:</p>
+            <pre><code class="html"
+><!-- /stories/:story_id -->
+<script type="text/x-handlebars"
+        data-template-name="stories/show">
+  {{#link-to 'stories.edit' content}}
+    <button class="btn btn-primary">Edit</button>
+  {{/link-to}}
+  <h3>{{title}}</h3>
+  {{outlet}}
+</script></code><code style="background: #eee;">File: index.html</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Showing Story Sections</h2>
+          <div style="text-align: left;">
+            <h3>Task - Display section choices</h3>
+            <p>Change section-show Template to show choices:</p>
+            <pre><code class="html"
+><script type="text/x-handlebars"
+          data-template-name="section-show">
+    {{content.text}}
+    <br>
+    <br>
+    {{#if content.choices}}
+      <p>What do you want to do?<p>
+      <ul>
+        {{#each content.choices}}
+          <li>{{#link-to 'stories.show.sections' goes_to}}
+            {{wording}}
+          {{/link-to}}</li>
+        {{/each}}
+      </ul>
+    {{else}}
+      <p><strong>The End</strong></p>
+    {{/if}}
+  </script></code><code style="background: #eee;">File: index.html</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Showing Story Sections</h2>
+          <div style="text-align: left;">
+            <h3>Task - Render Section Route</h3>
+            <p>Insert a template for stories/show/sections:</p>
+            <pre><code class="html"
+><!-- /stories/:story_id/sections/:section_id -->
+  &lt;script type="text/x-handlebars"
+          data-template-name="stories/show/sections">
+    {{render section-show content}}
+  &lt;/script></code><code style="background: #eee;">File: index.html</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Showing Story Sections</h2>
+          <p>It's playable!</p>
+          <a class="image" href="http://localhost:3000/#/stories/100" target="_blank">
+            <img width="50%" src="images\section-show.png" style="border: 0; box-shadow: none;">
+          </a>
+          <p><b>Problems?</b> Compare with working version:</p>
+          <pre><code class="bash">$ git diff -w 4b671 index.html js</code></pre>
+        </section>
+
+<!-- Objective 7 - Editing Sections -->
+
+        <section>
+          <h2>Objective 7</h2>
+          <h3>Editing Story Sections</h3>
+          <div style="text-align: left;">
+            <p>Great, but how do we make changes to sections?</p>
+          </div>
+          <a class="image" href="http://localhost:3000/#/stories/100/edit" target="_blank">
+            <img width="50%" src="images\add-choices.png" style="border: 0; box-shadow: none;">
+          </a>
+        </section>
+
+        <section>
+          <h2>Editing Story Sections</h2>
+          <div style="text-align: left;">
+            <h3>Tasks</h3>
+            <ul>
+              <li>Edit Section Wording</li>
+              <li>Add Choices to edit page</li>
+              <li>Removable choices</li>
+              <li>Create new sections</li>
+            </ul>
+          </div>
+        </section>
+
 
 			</div>
 		</div>
