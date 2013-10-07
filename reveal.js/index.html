@@ -125,9 +125,9 @@
         </section>
 
         <section>
-          <h3>List stories in the Index Route</h3>
+          <h2>List stories in the Index Route</h2>
           <div style="text-align: left;">
-            <h4>Task - Personalize the page design</h4>
+            <h3>Task - Personalize the page design</h3>
             <p>Personalize the title</p>
             <pre><code class="html"
 >...
@@ -137,9 +137,9 @@
         </section>
 
         <section>
-          <h3>List stories in the Index Route</h3>
+          <h2>List stories in the Index Route</h2>
           <div style="text-align: left;">
-            <h4>Task - Personalize the page design</h4>
+            <h3>Task - Personalize the page design</h3>
             <p>Change out the Application Template for one containing a
             Bootstrap navbar.</p><br>
             <p>Replace this:</p>
@@ -162,9 +162,9 @@
         </section>
 
         <section>
-          <h3>List stories in the Index Route</h3>
+          <h2>List stories in the Index Route</h2>
           <div style="text-align: left;">
-            <h4>Task - Change the Index Route to use story names as the Model</h4>
+            <h3>Task - Change the Index Route to use story names as the Model</h3>
             <p>Change the Index Route in js/routes.js to look like this:</p>
             <pre><code class="javascript"
 >App.IndexRoute = Ember.Route.extend({
@@ -176,9 +176,9 @@
         </section>
 
         <section>
-          <h3>List stories in the Index Route</h3>
+          <h2>List stories in the Index Route</h2>
           <div style="text-align: left;">
-            <h4>Task - Show stories in the Index Template</h4>
+            <h3>Task - Show stories in the Index Template</h3>
             <p>In index.html, find the Index Template (it contains <b>data-template-name="index"</b>).</p>
             <br>
             <p>Replace it with this</p>
@@ -235,10 +235,10 @@
         <section>
           <h2>Using ember-data Models and Fixtures for data</h2>
           <div style="text-align: left;">
-            <h4>Task - Create a new Route called 'stories'</h4>
+            <h3>Task - Create a new Route called 'stories'</h3>
             <p>Configure the Router to support <b>#/stories</b>.</p>
             <br>
-            <p>Replace the App.Router conguration with this:</p>
+            <p>Replace the Router conguration with this:</p>
             <pre><code class="html"
 >App.Router.map(function() {
   this.resource('stories', function() {});
@@ -249,7 +249,7 @@
         <section>
           <h2>Using ember-data Models and Fixtures for data</h2>
           <div style="text-align: left;">
-            <h4>Task - Create a new Route called 'stories'</h4>
+            <h3>Task - Create a new Route called 'stories'</h3>
             <p>Get rid of the old Index Route implementation:</p>
             <pre><code></code><code style="color: #d00;"
 >App.IndexRoute = Ember.Route.extend({
@@ -263,7 +263,7 @@
         <section>
           <h2>Using ember-data Models and Fixtures for data</h2>
           <div style="text-align: left;">
-            <h4>Task - Set the Stories Route model to return 'story' Models</h4>
+            <h3>Task - Set the Stories Route model to return 'story' Models</h3>
             <p>Uncomment the Fixture Adapter and Story Model in js/models.js</p>
             <pre><code class="javascript"
 >App.ApplicationAdapter = DS.FixtureAdapter.extend();
@@ -278,7 +278,7 @@ App.Story = DS.Model.extend({
         <section>
           <h2>Using ember-data Models and Fixtures for data</h2>
           <div style="text-align: left;">
-            <h4>Task - Set the Stories Route model to return 'story' Models</h4>
+            <h3>Task - Set the Stories Route model to return 'story' Models</h3>
             <p>Uncomment the Story Fixture in js/fixtures.js</p>
             <pre><code class="javascript"
 >App.Story.FIXTURES = [
@@ -309,7 +309,7 @@ App.Story = DS.Model.extend({
         <section>
           <h2>Using ember-data Models and Fixtures for data</h2>
           <div style="text-align: left;">
-            <h4>Task - Set the Stories Route model to return 'story' Models</h4>
+            <h3>Task - Set the Stories Route model to return 'story' Models</h3>
             <p>Implement the StoriesIndex Route</p>
             <pre><code class="javascript"
 >App.StoriesIndexRoute = Ember.Route.extend({
@@ -323,7 +323,7 @@ App.Story = DS.Model.extend({
         <section>
           <h2>Using ember-data Models and Fixtures for data</h2>
           <div style="text-align: left;">
-            <h4>Task - Set the Stories Route model to return 'story' Models</h4>
+            <h3>Task - Set the Stories Route model to return 'story' Models</h3>
             <p>Remove the Index Template from index.html</p>
             <pre><code></code><code style="color: #d00;"
 ><!-- / -->
@@ -343,7 +343,7 @@ App.Story = DS.Model.extend({
         <section>
           <h2>Using ember-data Models and Fixtures for data</h2>
           <div style="text-align: left;">
-            <h4>Task - Set the Stories Route model to return 'story' Models</h4>
+            <h3>Task - Set the Stories Route model to return 'story' Models</h3>
             <p>Insert the replacement stories/index page</p>
             <pre><code class="html"
 ><!-- /stories -->
@@ -363,7 +363,7 @@ App.Story = DS.Model.extend({
         <section>
           <h2>Using ember-data Models and Fixtures for data</h2>
           <div style="text-align: left;">
-            <h4>Task - Make the default Index Route reroute to Stories Route</h4>
+            <h3>Task - Make the default Index Route reroute to Stories Route</h3>
             <p>Implement a new Index Route in js/routes.js</p>
             <pre><code class="javascript"
 >App.IndexRoute = Ember.Route.extend({
@@ -379,7 +379,7 @@ App.Story = DS.Model.extend({
           <h3>List stories in the Index Route</h3>
           <p>Done!</p>
           <a class="image" href="http://localhost:3000/#/stories" target="_blank">
-            <img width="50%" src="images\stories-route.png" style="border: 0; box-shadow: none;">
+            <img width="40%" src="images\stories-route.png" style="border: 0; box-shadow: none;">
           </a>
           <p><b>Problems?</b> Compare with working version:</p>
           <pre><code class="bash">$ git diff -w 424ae index.html js</code></pre>
@@ -413,8 +413,8 @@ App.Story = DS.Model.extend({
         <section>
           <h2>Create a Story Viewer page</h2>
           <div style="text-align: left;">
-            <h4>Task - Create a 'show' Route</h4>
-            <p>Update the App.Router object to include the 'show' entry:</p>
+            <h3>Task - Create a 'show' Route</h3>
+            <p>Update the Router object to include the 'show' entry:</p>
             <pre><code class="javascript"
 >App.Router.map(function() {
   this.resource('stories', function() {
@@ -427,7 +427,7 @@ App.Story = DS.Model.extend({
         <section>
           <h2>Create a Story Viewer page</h2>
           <div style="text-align: left;">
-            <h4>Task - Create a 'show' Route</h4>
+            <h3>Task - Create a 'show' Route</h3>
             <p>In the stories/index Template replace the title binding with a link-to helper:</p>
             <pre><code class="html"
 ><!--== Templates with routes ==-->
@@ -450,7 +450,7 @@ App.Story = DS.Model.extend({
         <section>
           <h2>Create a Story Viewer page</h2>
           <div style="text-align: left;">
-            <h4>Task - Create a 'show' Template</h4>
+            <h3>Task - Create a 'show' Template</h3>
             <p>Insert the following under the stories index template:</p>
             <pre><code class="html"
 ><!-- /stories/:story_id -->
@@ -464,7 +464,7 @@ App.Story = DS.Model.extend({
         <section>
           <h2>Create a Story Viewer page</h2>
           <div style="text-align: left;">
-            <h4>Configure the Story Show Route to load the Story Model</h4>
+            <h3>Task - Configure the Story Show Route to load the Story Model</h3>
             <p>Insert the following StoriesShow Route definition to js/routes.js:</p>
             <pre><code class="javascript"
 >App.StoriesShowRoute = Ember.Route.extend({
@@ -493,7 +493,7 @@ App.Story = DS.Model.extend({
           <div style="text-align: left;">
             <p>Editing would be nice!</p>
           </div>
-          <a class="image" href="http://localhost:3000/#/stories" target="_blank">
+          <a class="image" href="http://localhost:3000/#/stories/100/edit" target="_blank">
             <img width="80%" src="images\edit-story.png" style="border: 0; box-shadow: none;">
           </a>
         </section>
@@ -504,10 +504,227 @@ App.Story = DS.Model.extend({
             <h3>Tasks</h3>
             <ul>
               <li>Create an edit route</li>
-              <li>Add a save button</li>
-              <li>Add a cancel button</li>
+              <li>Implement Save</li>
+              <li>Implement Cancel</li>
               <li>Go to the Show page after saving</li>
-              <li>Update stories list page</li>
+              <li>Update links in other pages</li>
+            </ul>
+          </div>
+        </section>
+
+        <section>
+          <h2>Story Editor</h2>
+          <div style="text-align: left;">
+            <h3>Task - Create an edit route</h3>
+            <p>Add an 'edit' Route to the Router:</p>
+            <pre><code class="javascript"
+>App.Router.map(function() {
+  this.resource('stories', function() {
+    this.route('show', { path: ':story_id'});
+    this.route('edit', { path: ':story_id/edit'});
+  });
+});</code><code style="background: #eee;">File: js/routes.js</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Story Editor</h2>
+          <div style="text-align: left;">
+            <h3>Task - Create an edit route</h3>
+            <p>We're going to make the Show and Edit Route reuse the same base class.</p><br>
+            <p>First remove the old Show Route...</p>
+            <pre><code></code><code style="color: #d00;"
+>App.StoriesShowRoute = Ember.Route.extend({
+  model: function(params) {
+    return this.get("store").find('story', params.story_id);
+  }
+});</code><code style="background: #eee;">File: js/routes.js</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Story Editor</h2>
+          <div style="text-align: left;">
+            <h3>Task - Create an edit route</h3>
+            <p>... and replace it with this:</p>
+            <pre><code class="javascript"
+>App.StoriesBaseRoute = Ember.Route.extend({
+  model: function(params) {
+    return this.get("store").find('story', params.story_id);
+  }
+});
+App.StoriesShowRoute = App.StoriesBaseRoute.extend();
+App.StoriesEditRoute = App.StoriesBaseRoute.extend();</code><code style="background: #eee;">File: js/routes.js</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Story Editor</h2>
+          <div style="text-align: left;">
+            <h3>Task - Create an edit route</h3>
+            <p>We're also going to need an edit template</p>
+            <pre><code class="html"
+><!-- /stories/:story_id/edit -->
+<script type="text/x-handlebars"
+        data-template-name="stories/edit">
+  <button {{action save}} class="btn btn-success">Save</button>
+  <button {{action cancel}} class="btn btn-danger">Cancel</button>
+  <h3>Edit {{title}}</h3>
+
+  <fieldset>
+    <label>Title</label>
+    {{input value=title size="80"}}
+  </fieldset>
+</script></code><code style="background: #eee;">File: index.html</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Story Editor</h2>
+          <div style="text-align: left;">
+            <h3>Task - Implement Save</h3>
+            <p>To make the save button work we're going to implement our first Controller action</p>
+            <pre><code class="javascript"
+>App.StoriesEditController = Ember.ObjectController.extend({
+  actions: {
+    save: function() {
+      this.get("content").save();
+    }
+  },
+});</code><code style="background: #eee;">File: js/controllers.js</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Story Editor</h2>
+          <div style="text-align: left;">
+            <h3>Task - Implement Cancel</h3>
+            <p>The same controller also needs a cancel action. Add it:</p>
+            <pre><code class="javascript"
+>App.StoriesEditController = Ember.ObjectController.extend({
+  actions: {
+    save: function() {
+      this.get("content").save();
+    },
+    cancel: function() {
+      this.get("content").rollback();
+      this.transitionToRoute("stories.show");
+    }
+  },
+});</code><code style="background: #eee;">File: js/controllers.js</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Story Editor</h2>
+          <div style="text-align: left;">
+            <h3>Task - Go to the Show page after saving</h3>
+            <p>Add an after save callback:</p>
+            <pre><code class="javascript"
+>App.StoriesEditController = Ember.ObjectController.extend({
+  actions: {
+    save: function() {
+      this.get("content").save().then(
+        this.didSave.bind(this)
+      );
+    },
+    ...
+  },
+
+  didSave: function(story) {
+    this.transitionToRoute("stories.show");
+  }
+});</code><code style="background: #eee;">File: js/controllers.js</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Story Editor</h2>
+          <div style="text-align: left;">
+            <h3>Task - Update links in other pages</h3>
+            <p>Add a link to the Edit Route from the Show Route:</p>
+            <pre><code class="html"
+><!-- /stories/:story_id -->
+  <script type="text/x-handlebars"
+          data-template-name="stories/show">
+    {{#link-to 'stories.edit' content}}
+      <button class="btn btn-primary">Edit</button>
+    {{/link-to}}
+    <h3>{{title}}</h3>
+  </script></code><code style="background: #eee;">File: index.html</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Story Editor</h2>
+          <div style="text-align: left;">
+            <h3>Task - Update links in other pages</h3>
+            <p>Replace the story links with a call to a new Partial Template in the Stories Template:</p>
+            <pre><code class="html"
+><!--== Templates with routes ==-->
+<!-- /stories -->
+<script type="text/x-handlebars"
+        data-template-name="stories/index">
+
+  <h3>Stories:</h3>
+  {{partial "stories/storiesList"}}
+</script></code><code style="background: #eee;">File: index.html</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Story Editor</h2>
+          <div style="text-align: left;">
+            <h3>Task - Update links in other pages</h3>
+            <p>Insert the Partial just after the other Template declarations</p>
+            <pre><code class="html"
+><!--== Partials ==-->
+&lt;script type="text/x-handlebars"
+        data-template-name="stories/_storiesList">
+  <ul>
+    {{#each story in content}}
+      <li>
+        {{#link-to 'stories.edit' story}}
+          <button class="btn btn-primary btn-xs">Edit</button>
+        {{/link-to}}
+        {{#link-to 'stories.show' story}}{{story.title}}{{/link-to}}
+      </li>
+    {{/each}}
+  </ul>
+&lt;/script></code><code style="background: #eee;">File: index.html</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Story Editor</h2>
+          <p>Yay, did it!</p>
+          <a class="image" href="http://localhost:3000/#/stories" target="_blank">
+            <img width="50%" src="images\edit-story2.png" style="border: 0; box-shadow: none;">
+          </a>
+          <p><b>Problems?</b> Compare with working version:</p>
+          <pre><code class="bash">$ git diff -w 04824 index.html js</code></pre>
+        </section>
+
+<!-- Objective 5 - New Story creation -->
+
+        <section>
+          <h2>Objective 5</h2>
+          <h3>Creating And Destroying Stories</h3>
+          <div style="text-align: left;">
+            <p>I want to create my own stories!</p>
+          </div>
+          <a class="image" href="http://localhost:3000/#/stories/new" target="_blank">
+            <img width="80%" src="images\new-story.png" style="border: 0; box-shadow: none;">
+          </a>
+        </section>
+
+        <section>
+          <h2>Creating and Destroying Stories</h3>
+          <div style="text-align: left;">
+            <h3>Tasks</h3>
+            <ul>
+              <li>Create Story</li>
+              <li>Delete Story</li>
             </ul>
           </div>
         </section>
