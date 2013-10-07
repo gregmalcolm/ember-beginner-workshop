@@ -729,6 +729,214 @@ App.StoriesEditRoute = App.StoriesBaseRoute.extend();</code><code style="backgro
           </div>
         </section>
 
+        <section>
+          <h2>Creating and Destroying Stories</h3>
+          <div style="text-align: left;">
+            <h3>Task - Create Story</h3>
+            <p>Add a 'new' Route to the Router:</p>
+            <pre><code class="javascript"
+>App.Router.map(function() {
+  this.resource('stories', function() {
+    this.route('new');
+    this.route('show', { path: ':story_id'});
+    this.route('edit', { path: ':story_id/edit'});
+  });
+});</code><code style="background: #eee;">File: js/routes.js</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Creating and Destroying Stories</h3>
+          <div style="text-align: left;">
+            <h3>Task - Create Story</h3>
+            <p>Implement the StoriesNew Route:</p>
+            <pre><code class="javascript"
+>App.StoriesNewRoute = Ember.Route.extend({
+  model: function(params) {
+    return this.get("store").createRecord("story");
+  }
+});</code><code style="background: #eee;">File: js/routes.js</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Creating and Destroying Stories</h3>
+          <div style="text-align: left;">
+            <h3>Task - Create Story</h3>
+            <p>Create a new Template for Route stories/new:</p>
+            <pre><code class="html"
+><!-- /stories/:story_id -->
+<script type="text/x-handlebars"
+        data-template-name="stories/new">
+  <h3>New Story</h3>
+  <fieldset>
+    <label>Title</label>
+    {{input value=title size="80"}}
+  </fieldset>
+  <br>
+  <button {{action create}} class="btn btn-success">Create</button>
+  <button {{action cancel}} class="btn btn-danger">Cancel</button>
+</script></code><code style="background: #eee;">File: index.html</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Creating and Destroying Stories</h3>
+          <div style="text-align: left;">
+            <h3>Task - Create Story</h3>
+            <p>Add a button to the stories/index Template for creating stories:</p>
+            <pre><code class="html"
+><!-- /stories -->
+<script type="text/x-handlebars"
+        data-template-name="stories/index">
+  <h3>Stories:</h3>
+  {{#link-to 'stories.new'}}
+    <button class = "btn btn-success">New Story</button>
+  {{/link-to}}
+  <br>
+  {{partial "stories/storiesList"}}
+</script></code><code style="background: #eee;">File: index.html</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Creating and Destroying Stories</h3>
+          <div style="text-align: left;">
+            <h3>Task - Create Story</h3>
+            <p>Insert a new base class for editing and creating for 'cancel' actions:</p>
+            <pre><code class="javascript"
+>App.StoriesModifyController = Ember.ObjectController.extend({
+  actions: {
+    cancel: function() {
+      this.get("content").rollback();
+      this.transitionToRoute("stories.index");
+    }
+  },
+});</code><code style="background: #eee;">File: js/controllers.js</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Creating and Destroying Stories</h3>
+          <div style="text-align: left;">
+            <h3>Task - Create Story</h3>
+            <p>In StorieEditController change the base class and remove the 'cancel' action:</p>
+            <pre><code class="javascript"
+>App.StoriesEditController = App.StoriesModifyController.extend({
+  actions: {
+    save: function() {
+      this.get("content").save().then(
+        this.didSave.bind(this)
+      );
+    }
+  },
+
+  didSave: function(story) {
+    this.transitionToRoute("stories.show");
+  }
+});</code><code style="background: #eee;">File: js/controllers.js</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Creating and Destroying Stories</h3>
+          <div style="text-align: left;">
+            <h3>Task - Create Story</h3>
+            <p>Insert a new controller for new stories, also using the new base class:</p>
+            <pre><code class="javascript"
+>App.StoriesNewController = App.StoriesModifyController.extend({
+  actions: {
+    create: function() {
+      this.get("content").save().then(
+        this.didCreate.bind(this)
+      );
+    }
+  },
+
+  didCreate: function(story) {
+    this.transitionToRoute("stories.edit", story);
+  }
+});</code><code style="background: #eee;">File: js/controllers.js</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Creating and Destroying Stories</h3>
+          <div style="text-align: left;">
+            <h3>Task - Delete Story</h3>
+            <p>Add a button to the stories/index Template for deleting stories:</p>
+            <pre><code class="html"
+><!--== Partials ==-->
+&lt;script type="text/x-handlebars"
+        data-template-name="stories/_storiesList">
+  <ul>
+    {{#each story in content}}
+      <li>
+        {{#link-to 'stories.edit' story}}
+          <button class="btn btn-primary btn-xs">Edit</button>
+        {{/link-to}}
+        &lt;button {{action "destroy" story}}
+          class="btn btn-danger btn-xs">Delete&lt;/button>
+        {{#link-to 'stories.show' story}}{{story.title}}{{/link-to}}
+      </li>
+    {{/each}}
+  </ul>
+&lt;/script></code><code style="background: #eee;">File: index.html</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Creating and Destroying Stories</h3>
+          <div style="text-align: left;">
+            <h3>Task - Delete Story</h3>
+            <p>Implement StoriesIndex Controller to handle 'delete' action:</p>
+            <pre><code class="javascript"
+>App.StoriesIndexController = Ember.ArrayController.extend({
+  actions: {
+    destroy: function(story) {
+      story.deleteRecord();
+      story.save();
+    }
+  }
+});</code><code style="background: #eee;">File: js/controllers.js</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Story Editor</h2>
+          <p>CRUDtastic!</p>
+          <a class="image" href="http://localhost:3000/#/stories" target="_blank">
+            <img width="50%" src="images\new-story2.png" style="border: 0; box-shadow: none;">
+          </a>
+          <p><b>Problems?</b> Compare with working version:</p>
+          <pre><code class="bash">$ git diff -w 22cc2 index.html js</code></pre>
+        </section>
+
+<!-- Objective 6 - Show Section -->
+
+        <section>
+          <h2>Objective 6</h2>
+          <h3>Showing Story Sections</h3>
+          <div style="text-align: left;">
+            <p>Might be real nice if our stories had some content!</p>
+          </div>
+          <a class="image" href="http://localhost:3000/#/stories/100" target="_blank">
+            <img width="80%" src="images\section-show.png" style="border: 0; box-shadow: none;">
+          </a>
+        </section>
+
+        <section>
+          <h2>Creating and Destroying Stories</h3>
+          <div style="text-align: left;">
+            <h3>Tasks</h3>
+            <ul>
+              <li>Show first story section</li>
+              <li>Display section choices</li>
+              <li>Render Section Route</li>
+            </ul>
+          </div>
+        </section>
+
 			</div>
 		</div>
 
