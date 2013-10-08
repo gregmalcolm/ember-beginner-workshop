@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Choose Your Own Adventure</title>
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/bootstrap-theme.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <script src="js/libs/jquery-1.9.1.js"></script>
+  <script src="js/libs/handlebars-1.0.0.js"></script>
+  <script src="js/libs/ember-1.0.0.js"></script>
+  <script src="js/libs/ember-data.js"></script>
+  <script src="js/libs/bootstrap.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/routes.js"></script>
+  <script src="js/controllers.js"></script>
+  <script src="js/models.js"></script>
+  <script src="js/fixtures.js"></script>
+
+  <!--== Templates ==-->
+
+  <script type="text/x-handlebars">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Choose your own Adventure</a>
+      </div>
+    </nav>
+    {{outlet}}
+  </script>
+
+  <!--== Templates with routes ==-->
+  <!-- /stories -->
+  <script type="text/x-handlebars"
+          data-template-name="stories/index">
+
+    <h3>Stories:</h3>
+    <ul>
+      {{#each story in content}}
+        <li>{{#link-to 'stories.show' story}}{{story.title}}{{/link-to}}</li>
+      {{/each}}
+    </ul>
+  </script>
+
+  <!-- /stories/:story_id -->
+  <script type="text/x-handlebars"
+          data-template-name="stories/show">
+    <h3>{{title}}</h3>
+  </script>
+</body>
+</html>
