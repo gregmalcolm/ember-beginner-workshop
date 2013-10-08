@@ -1504,11 +1504,163 @@ App.StoriesEditRoute = App.StoriesBaseRoute.extend();</code><code style="backgro
           <div style="text-align: left;">
             <h3>Tasks</h3>
             <ul>
-              <li>Make editing work from Sections</li>
+              <li>Make editing work from all Sections</li>
               <li>Make 'New Story' work with choices</li>
             </ul>
           </div>
         </section>
+
+        <section>
+          <h2>Finishing Touches</h2>
+          <div style="text-align: left;">
+            <h3>Task - Make editing work from all Sections</h3>
+            <p><b>Refactor:</b> Move StoriesShowIndex Route content into StoriesShowBaseRoute and inherit from it:</p>
+            <pre><code class="javascript"
+>App.StoriesShowBaseRoute = Ember.Route.extend({
+  model: function(params) {
+    return this.modelFor("stories.show");
+  }
+});
+App.StoriesShowIndexRoute    = App.StoriesShowBaseRoute.extend({});</code><code style="background: #eee;">File: js/routes.js</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Finishing Touches</h2>
+          <div style="text-align: left;">
+            <h3>Task - Make editing work from all Sections</h3>
+            <p>Implement Route StoriesShowSectionsRoute, extending functionality of StoriesShowBaseRoute:</p>
+            <pre><code class="javascript"
+>App.StoriesShowSectionsRoute = App.StoriesShowBaseRoute.extend({
+  model: function(params) {
+    this._super(params);
+    return this.store.find('section', params.section_id);
+  }
+});</code><code style="background: #eee;">File: js/routes.js</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Finishing Touches</h2>
+          <div style="text-align: left;">
+            <h3>Task - Make editing work from all Sections</h3>
+            <p>Change stories/show edit button to use a Controller Action</p>
+            <pre><code class="html"
+><!-- /stories/:story_id -->
+<script type="text/x-handlebars"
+        data-template-name="stories/show">
+  <button {{action edit}} class="btn btn-primary">Edit</button>
+  <h3>{{title}}</h3>
+  {{outlet}}
+</script></code><code style="background: #eee;">File: index.html</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Finishing Touches</h2>
+          <div style="text-align: left;">
+            <h3>Task - Make editing work from all Sections</h3>
+            <p>Explictly define an ApplicationController (application scope controller)</p>
+            <pre><code class="javascript"
+>App.ApplicationController = Ember.Controller.extend();</code><code style="background: #eee;">File: js/controllers.js</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Finishing Touches</h2>
+          <div style="text-align: left;">
+            <h3>Task - Make editing work from all Sections</h3>
+            <p>Implement a StoriesShow Controller which correctly transitions to
+               the either stories.edit or stories.edit.sections Routes</p>
+            <pre><code class="javascript"
+>App.StoriesShowController = Ember.ObjectController.extend({
+  needs: "application",
+
+  actions: {
+    edit: function() {
+      if (this.get("controllers.application.currentPath") ===
+          "stories.show.sections") {
+        this.transitionToRoute("stories.edit.sections");
+      } else {
+        this.transitionToRoute("stories.edit");
+      }
+    }
+  },
+})</code><code style="background: #eee;">File: js/controllers.js</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Finishing Touches</h2>
+          <div style="text-align: left;">
+            <h3>Task - Make editing work from all Sections</h3>
+            <p>Add Section Choices to section-edit or storiesEditSections depending on which section we're on.</p><br>
+            <p>Edit the top part of storiesEditSections to look like this:</p>
+            <pre><code class="javascript"
+>App.StoriesEditSectionsController = Ember.ObjectController.extend();
+
+App.ChoiceAddController = Ember.ObjectController.extend({
+  needs: ["storiesEditSections","section-edit"],
+...</code><code style="background: #eee;">File: js/controllers.js</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Finishing Touches</h2>
+          <div style="text-align: left;">
+            <h3>Task - Make editing work from all Sections</h3>
+            <p>Add Section Choices to section-edit or storiesEditSections depending on which section we're on.</p><br>
+            <p>... and change the parentController function to be this:</p>
+            <pre><code class="javascript"
+>App.ChoiceAddController = Ember.ObjectController.extend({
+...
+  parentController: function() {
+    section = this.get("controllers.storiesEditSections.choices");
+    if (section === undefined) {
+      section = this.get("controllers.section-edit.choices");
+    }
+    return section;
+  },
+...</code><code style="background: #eee;">File: js/controllers.js</code></pre>
+          </div>
+        </section>
+
+
+        <section>
+          <h2>Finishing Touches</h2>
+          <div style="text-align: left;">
+            <h3>Task - Make 'New Story' work with choices</h3>
+            <p>Implement StoriesNew route</p>
+            <pre><code class="javascript"
+>App.StoriesNewRoute = Ember.Route.extend({
+  model: function(params) {
+    story = this.get("store").createRecord("story");
+    section = this.get("store").createRecord("section");
+    story.set("first_section", section);
+    return story;
+  }
+});</code><code style="background: #eee;">File: js/controllers.js</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Finishing Touches</h2>
+          <p>Finito!</p>
+          <a class="image" href="http://localhost:3000/#/stories/100/new" target="_blank">
+            <img width="35%" src="images\fix-new.png" style="border: 0; box-shadow: none;">
+          </a>
+          <p><b>Problems?</b> Compare with working version:</p>
+          <pre><code class="bash">$ git diff -w 77fc2 index.html js</code></pre>
+        </section>
+
+        <section data-background="images/poshhippobum-wallpaper.jpg">
+          <div style="position:fixed; left:-45px; top: -300px">
+            <p style="color:white;">
+              <small>Greg Malcolm <a href="http://github.com/gregmalcolm" style="color: #71e9f4">github.com/gregmalcolm</a> <a href="http://twitter.com/gregmalcolm" style="color: #71e9f4">@gregmalcolm</a></small>
+            </p>
+            <h1 style="color:white;">So Long And Thanks For All The Javascripts!</h1>
+          </div>
+				</section>
 
 			</div>
 		</div>
