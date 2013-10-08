@@ -146,8 +146,17 @@
             <pre><code></code><code style="color:#d00;"
 ><script type="text/x-handlebars">
   <h2>Welcome to Ember.js</h2>
-</script></code></pre>
-            <p>With this:</p>
+</script></code><code style="background: #eee;">File: index.html</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>List stories in the Index Route</h2>
+          <div style="text-align: left;">
+            <h3>Task - Personalize the page design</h3>
+            <p>Change out the Application Template for one containing a
+            Bootstrap navbar.</p><br>
+            <p>... With this:</p>
             <pre><code class="html"><!--== Templates ==-->
 <script type="text/x-handlebars">
   <nav class="navbar navbar-inverse navbar-fixed-top"
@@ -157,7 +166,7 @@
     </div>
   </nav>
   {{outlet}}
-</script></code></pre>
+</script></code><code style="background: #eee;">File: index.html</code></pre>
           </div>
         </section>
 
@@ -287,21 +296,7 @@ App.Story = DS.Model.extend({
     title: 'Temple Quest',
     first_section: 2000
   },
-  {
-    id: 101,
-    title: 'Adventure!',
-    first_section: 2100
-  },
-  {
-    id: 102,
-    title: 'Zombies!',
-    first_section: 2200
-  },
-  {
-    id: 103,
-    title: 'Deathrace!',
-    first_section: 2300
-  }
+  ...
 ];</code><code style="background: #eee;">File: js/fixtures.js</code></pre>
           </div>
         </section>
@@ -376,7 +371,6 @@ App.Story = DS.Model.extend({
 
         <section>
           <h2>Using ember-data Models and Fixtures for data</h2>
-          <h3>List stories in the Index Route</h3>
           <p>Done!</p>
           <a class="image" href="http://localhost:3000/#/stories" target="_blank">
             <img width="40%" src="images\stories-route.png" style="border: 0; box-shadow: none;">
@@ -394,7 +388,7 @@ App.Story = DS.Model.extend({
             <p>Create a new Ember Route called story for reading a story</p>
           </div>
           <a class="image" href="http://localhost:3000/#/stories" target="_blank">
-            <img width="40%" src="images\show-story.png" style="border: 0; box-shadow: none;">
+            <img width="50%" src="images\show-story.png" style="border: 0; box-shadow: none;">
           </a>
         </section>
 
@@ -921,7 +915,7 @@ App.StoriesEditRoute = App.StoriesBaseRoute.extend();</code><code style="backgro
             <p>Might be real nice if our stories had some content!</p>
           </div>
           <a class="image" href="http://localhost:3000/#/stories/100" target="_blank">
-            <img width="80%" src="images\section-show.png" style="border: 0; box-shadow: none;">
+            <img width="70%" src="images\section-show.png" style="border: 0; box-shadow: none;">
           </a>
         </section>
 
@@ -1195,18 +1189,326 @@ App.StoriesEditRoute = App.StoriesBaseRoute.extend();</code><code style="backgro
         </section>
 
         <section>
-          <h2>Editing Story Sections</h2>
+          <h2>Editing the first Section</h2>
           <div style="text-align: left;">
             <h3>Tasks</h3>
             <ul>
-              <li>Edit Section Wording</li>
-              <li>Add Choices to edit page</li>
+              <li>Edit routing for story sections</li>
+              <li>Apply choices</li>
               <li>Removable choices</li>
-              <li>Create new sections</li>
+              <li>Adding choices</li>
             </ul>
           </div>
         </section>
 
+        <section>
+          <h2>Editing the first Section</h2>
+          <div style="text-align: left;">
+            <h3>Task - Edit routing for story sections</h3>
+            <p>Turn 'edit' route into a resource containing a section route:</p>
+            <pre><code class="javascript"
+>App.Router.map(function() {
+  this.resource('stories', function(){
+    this.route('new');
+    this.resource('stories.show', {path: ':story_id'}, function(){
+      this.route('sections', {path: '/sections/:section_id' });
+    });
+    this.resource('stories.edit',{path: ':story_id/edit'}, function(){
+      this.route('sections', {path: '/sections/:section_id' });
+    });
+  });
+});</code><code style="background: #eee;">File: js/routes.js</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Editing the first Section</h2>
+          <div style="text-align: left;">
+            <h3>Task - Edit routing for story sections</h3>
+            <p>Insert a new Edit Index Route</p>
+            <pre><code class="javascript"
+>App.StoriesEditIndexRoute = Ember.Route.extend({
+  model: function(params) {
+    return this.modelFor("stories.edit");
+  }
+});</code><code style="background: #eee;">File: js/routes.js</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Editing the first Section</h2>
+          <div style="text-align: left;">
+            <h3>Task - Edit routing for story sections</h3>
+            <p>Insert a new Template for stories/edit/index</p>
+            <pre><code class="html"
+><!-- /stories/:story_id/edit<index> -->
+  &lt;script type="text/x-handlebars"
+          data-template-name="stories/edit/index">
+    {{render section-edit first_section}}
+  &lt;/script></code><code style="background: #eee;">File: index.html</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Editing the first Section</h2>
+          <div style="text-align: left;">
+            <h3>Task - Edit routing for story sections</h3>
+            <p>Replace the {{render}} helper with {{outlet}} in stories/edit Template</p>
+            <pre><code class="html"
+><!-- /stories/:story_id/edit -->
+<script type="text/x-handlebars"
+        data-template-name="stories/edit">
+  <button {{action save}} class="btn btn-success">Save</button>
+  <button {{action cancel}} class="btn btn-danger">Cancel</button>
+  <h3>Edit {{title}}</h3>
+  <fieldset>
+    <label>Title</label>
+    {{input value=title size="80"}}
+  </fieldset>
+  {{outlet}}
+</script></code><code style="background: #eee;">File: index.html</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Editing the first Section</h2>
+          <div style="text-align: left;">
+            <h3>Task - Edit routing for story sections</h3>
+            <p>Insert a new Template for stories/edit/sections</p>
+            <pre><code class="html"
+><!-- /stories/:story_id/edit/sections/:section_id -->
+  &lt;script type="text/x-handlebars"
+          data-template-name="stories/edit/sections">
+    {{render section-edit content}}
+  &lt;/script></code><code style="background: #eee;">File: index.html</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Editing the first Section</h2>
+          <div style="text-align: left;">
+            <h3>Task - Apply choices</h3>
+            <p>Add {{render choices-edit content.choices}} to the bottom area section-edit Template</p>
+            <pre><code class="html"
+><!-- section-edit -->
+<script type="text/x-handlebars"
+        data-template-name="section-edit">
+  <h4>Section: {{content.synopsis}}</h4>
+  <div>
+    <fieldset>
+      <label>Short synopsis:</label>
+      {{input value=content.synopsis}}
+    </fieldset>
+    <fieldset>
+      <label>Content:</label><br>
+      {{textarea value=content.text cols=100 rows=6}}
+    </fieldset>
+    {{render choices-edit content.choices}}
+  </div>
+</script></code><code style="background: #eee;">File: index.html</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Editing the first Section</h2>
+          <div style="text-align: left;">
+            <h3>Task - Apply choices</h3>
+            <p>Insert a Template called choices-edit</p>
+            <pre><code class="html"
+><!-- choices-edit -->
+<script type="text/x-handlebars"
+        data-template-name="choices-edit">
+  <h4>Choices:</h4>
+  <ul>
+  {{#each choice in content}}
+    <li>
+      {{#link-to 'stories.edit.sections' choice.goes_to}}
+        {{choice.wording}}
+      {{/link-to}}
+    </li>
+  {{/each}}
+  </ul>
+</script></code><code style="background: #eee;">File: index.html</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Editing the first Section</h2>
+          <div style="text-align: left;">
+            <h3>Task - Removable choices</h3>
+            <p>Add a Remove button to the choices-edit</p>
+            <pre><code class="html"
+><!-- choices-edit -->
+<script type="text/x-handlebars"
+        data-template-name="choices-edit">
+  <h4>Choices:</h4>
+  <ul>
+  {{#each choice in content}}
+    <li>
+      <button {{action "remove" choice}}
+              class="btn btn-danger btn-xs">Remove</button>
+      {{#link-to 'stories.edit.sections' choice.goes_to}}
+        {{choice.wording}}
+      {{/link-to}}
+    </li>
+  {{/each}}
+  </ul>
+</script></code><code style="background: #eee;">File: index.html</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Editing the first Section</h2>
+          <div style="text-align: left;">
+            <h3>Task - Removable choices</h3>
+            <p>Insert a controller for choices-edit template to handle deletions</p>
+            <pre><code class="javascript"
+>App.ChoicesEditController = Ember.ArrayController.extend({
+  actions: {
+    remove: function(choice) {
+      choice.deleteRecord();
+      choice.save().then(this.didRemove.bind(this),
+                         this.didRejectRemove.bind(this));
+    }
+  },
+  didRemove: function(choice) {
+    choices = this.get("content")
+    choices.removeObject(choice)
+  },
+  didRejectRemove: function(reason) {
+    console.error("Failed to remove item", reason);
+  }
+});</code><code style="background: #eee;">File: js/controllers.js</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Editing the first Section</h2>
+          <div style="text-align: left;">
+            <h3>Task - Adding choices</h3>
+            <p>Place a {{render "choice-add"}} declaration at the bottom of choices-add Template</p>
+            <pre><code class="html"
+><!-- choices-edit -->
+<script type="text/x-handlebars"
+        data-template-name="choices-edit">
+  <h4>Choices:</h4>
+  <ul>
+    {{#each choice in content}}
+      <li><button {{action "remove" choice}}
+                  class="btn btn-danger btn-xs">Remove</button>
+        {{#link-to 'stories.edit.sections' choice.goes_to}}
+          {{choice.wording}}
+        {{/link-to}}
+      </li>
+    {{/each}}
+  </ul>
+  {{render "choice-add"}}
+</script></code><code style="background: #eee;">File: index.html</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Editing the first Section</h2>
+          <div style="text-align: left;">
+            <h3>Task - Adding choices</h3>
+            <p>Add a new choices-edit Template</p>
+            <pre><code class="html"
+><!-- choices-add -->
+<script type="text/x-handlebars"
+        data-template-name="choice-add">
+  <label>New choice</label><br>
+
+  {{input value=wording
+          placeholder="Add an extra choice here"
+          size="60"}}
+  <button {{action "add"}} class="btn btn-success btn-xs">Add</button>
+</script></code><code style="background: #eee;">File: index.html</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Editing the first Section</h2>
+          <div style="text-align: left;">
+            <h3>Task - Adding choices</h3>
+            <p>Add a new Choice Add controller (Part 1/2)</p>
+            <pre><code class="javascript"
+>App.ChoiceAddController = Ember.ObjectController.extend({
+  needs: "section-edit",
+
+  content: function() {
+    return this.createChoiceObject();
+  }.property(''),
+
+  actions: {
+    add: function() {
+      choice = this.get("content");
+      choice.set("goes_to", this.newSection());
+      this.parentController().pushObject(choice);
+      choice.save().then(this.didAdd.bind(this));
+    }
+  },
+...</code><code style="background: #eee;">File: js/controllers.js</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Editing the first Section</h2>
+          <div style="text-align: left;">
+            <h3>Task - Adding choices</h3>
+            <p>Add a new Choice Add controller (Part 2/2)</p>
+            <pre><code class="javascript"
+>...
+  didAdd: function() {
+    this.set("content", this.createChoiceObject());
+  },
+
+  createChoiceObject: function() {
+    return this.get("store").createRecord('choice');
+  },
+
+  parentController: function() {
+    return this.get("controllers.section-edit.choices");
+  },
+
+  newSection: function() {
+    return this.get("store").createRecord('section');
+  }
+});</code><code style="background: #eee;">File: js/controllers.js</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Showing Story Sections</h2>
+          <p>Almost there!</p>
+          <a class="image" href="http://localhost:3000/#/stories/100/edit" target="_blank">
+            <img width="35%" src="images\add-choices.png" style="border: 0; box-shadow: none;">
+          </a>
+          <p><b>Problems?</b> Compare with working version:</p>
+          <pre><code class="bash">$ git diff -w 6d9df index.html js</code></pre>
+        </section>
+
+<!-- Objective 8 - Finishing touches -->
+
+        <section>
+          <h2>Objective 8</h2>
+          <h3>Finishing Touches</h3>
+          <div style="text-align: left;">
+          </div>
+          <a class="image" href="http://localhost:3000/#/stories/100/edit" target="_blank">
+            <img width="50%" src="images\fix-new.png" style="border: 0; box-shadow: none;">
+          </a>
+        </section>
+
+        <section>
+          <h2>Finishing Touches</h2>
+          <div style="text-align: left;">
+            <h3>Tasks</h3>
+            <ul>
+              <li>Make editing work from Sections</li>
+              <li>Make 'New Story' work with choices</li>
+            </ul>
+          </div>
+        </section>
 
 			</div>
 		</div>
