@@ -51,4 +51,6 @@ grunt serve
 This will serve up reveal.js slides on port 8000. So open this url in a browser
 to see them:
 
+```
 http://localhost:8000
+```
