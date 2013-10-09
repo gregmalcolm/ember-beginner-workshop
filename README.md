@@ -10,10 +10,8 @@ Before starting you'll need to install any of the following that you don't alrea
 * [Python 2.7](http://www.python.org/download/releases/2.7/)
 * [Chrome](https://www.google.com/intl/en/chrome/browser)
 * [Ember Inspector](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
-* [Node](http://nodejs.org/)  
-  **Windows Users:** You may need to reboot to get 'npm' to work
-* **Grunt**  
-  Run from your command shell:
+* [Node](http://nodejs.org/) - **Windows Users:** You may need to reboot to get 'npm' to work
+* **Grunt** - From your command shell:
   ```
   npm install -g grunt-cli
   ```
