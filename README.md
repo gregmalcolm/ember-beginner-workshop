@@ -12,13 +12,13 @@ Before starting you'll need to install any of the following that you don't alrea
 * [Ember Inspector](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
 * [Node](http://nodejs.org/)
 
-  **Windows Users:** You may need to reboot to get 'npm' to work
+    **Windows Users:** You may need to reboot to get 'npm' to work
 * **Grunt**
 
-  Run from your command shell:
-  ```
-  npm install -g grunt-cli
-  ```
+    Run from your command shell:
+    ```
+    npm install -g grunt-cli
+    ```
 
 Ember Workshop Project
 ----------------------
