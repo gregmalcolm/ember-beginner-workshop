@@ -6,20 +6,13 @@ Preparation
 
 Before starting you'll need to install any of the following that you don't already have:
 
-[Git](http://git-scm.com/downloads)
-
-[Python 2.7](http://www.python.org/download/releases/2.7/)
-
-[Chrome](https://www.google.com/intl/en/chrome/browser)
-
-[Ember Inspector](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
-
-[Node](http://nodejs.org/)
-
+* [Git](http://git-scm.com/downloads)
+* [Python 2.7](http://www.python.org/download/releases/2.7/)
+* [Chrome](https://www.google.com/intl/en/chrome/browser)
+* [Ember Inspector](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
+* [Node](http://nodejs.org/)  
   **Windows Users:** You may need to reboot to get 'npm' to work
-
-**Grunt**
-
+* **Grunt**  
   Run from your command shell:
   ```
   npm install -g grunt-cli
