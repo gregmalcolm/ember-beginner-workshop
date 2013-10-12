@@ -42,7 +42,7 @@ From a command shell, go to the Ember Beginner Workshop folder and run this:
 
 ```
 cd reveal.js
-node install
+npm install
 grunt serve
 ```
 
