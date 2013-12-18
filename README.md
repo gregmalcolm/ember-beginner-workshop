@@ -4,20 +4,23 @@ Ember Beginners Workshop
 Preparation
 -----------
 
-Before starting you'll need to install any of the following that you don't already have:
+Before starting you'll need to install any of the following (if you don't
+already have them):
 
-* [Git](http://git-scm.com/downloads)
 * [Python 2.7](http://www.python.org/download/releases/2.7/)
 * [Chrome](https://www.google.com/intl/en/chrome/browser)
 * [Ember Inspector](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
-* [Node](http://nodejs.org/) - **Windows Users:** You may need to reboot to get 'npm' to work
-* **Grunt** - From your command shell:
-  ```
-  npm install -g grunt-cli
-  ```
+
+It is also suggested that you install Git:
+* [Git](http://git-scm.com/downloads)
 
 Ember Workshop Project
 ----------------------
+
+It is recommended that you work with a Github fork of this project. If you
+prefer not to, you can just download a [zip file](https://github.com/gregmalcolm/ember-beginner-workshop/archive/master.zip) instead.
+
+To work from a git repository:
 
 1 Create a github account (if needed)
 
@@ -28,27 +31,14 @@ Ember Workshop Project
 
 4 Clone the project fork.
 
-Note: If you don't want to fork the project, you can just clone my project:
-
 ```
 git clone https://github.com/gregmalcolm/ember-beginner-workshop.git
 ```
 
-Reveal.js
----------
+Reveal.js slides
+----------------
 
-We will use Reveal.js to walk through the steps in the workshop.
-From a command shell, go to the Ember Beginner Workshop folder and run this:
+The instructions for the tutorial are in the form of a Reveal.js slideshow. They
+are available here:
 
-```
-cd reveal.js
-npm install
-grunt serve
-```
-
-This will serve up reveal.js slides on port 8000. So open this url in a browser
-to see them:
-
-```
-http://localhost:8000
-```
+http://slid.es/gregmalcolm/ember-js-workshop/
